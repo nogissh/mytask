@@ -78,15 +78,17 @@ export default {
     })
   },
   methods: {
-    unshift: function ()
+    unshift: function (e)
     {
+      if (e.keyCode == 229) return;
       if (this.form.task.top.name == '') { return; }
       this.$store.dispatch('task/unshift', createNewTask(Date.now(), this.form.task.top.name));
       this.hideTopTaskForm();
       this.form.task.top.name = '';
     },
-    push: function ()
+    push: function (e)
     {
+      if (e.keyCode == 229) return;
       if (this.form.task.bottom.name == '') { return; }
       this.$store.dispatch('task/push', createNewTask(Date.now(), this.form.task.bottom.name));
       this.form.task.bottom.name = '';

@@ -5,7 +5,7 @@
     </div>
     <div style="width: 100%; margin-top: 16px;">
       <span style="margin-right: 8px">Add new tag:</span>
-      <input type="text" placeholder="Tag name" v-model="form.tag.name" style="width: 200px; margin-right: 8px;" />
+      <input type="text" placeholder="Tag name" v-model="form.tag.name" @keydown.enter="add" style="width: 200px; margin-right: 8px;" />
       <button class="action" @click="add">add</button>
     </div>
   </div>
@@ -37,7 +37,8 @@ export default {
     })
   },
   methods: {
-    add: function () {
+    add: function (e) {
+      if (e.keyCode == 229) return;
       this.$store.dispatch('tag/add', createNewTag(Date.now(), this.form.tag.name));
       this.form.tag.name = '';
     }
