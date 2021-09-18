@@ -9,7 +9,7 @@
         <div class="cleararea__flex-parent">
           <div class="cleararea__flex-left">
             <p>
-              <span class="inline__vertical-middle">Backup data</span>
+              <span class="inline__vertical-middle">Download backup data</span>
             </p>
           </div>
           <div class="cleararea__flex-right" style="text-align: right">
@@ -23,12 +23,14 @@
         <div class="cleararea__flex-parent">
           <div class="cleararea__flex-left">
             <p>
-              <span class="inline__vertical-middle">Read backup data (Comming soon)</span>
+              <span class="inline__vertical-middle">Restoration from backup data</span>
             </p>
           </div>
           <div class="cleararea__flex-right" style="text-align: right">
             <span class="inline__vertical-middle">
-              <button class="action" @click="importdata">Import</button>
+              <label class="btn action color-default" for="backup-file-uploader" style="font-size: 13px; font-weight: 400">
+                <input type="file" style="display: none" id="backup-file-uploader" @change="importdata">Import
+              </label>
             </span>
           </div>
         </div>
@@ -84,8 +86,23 @@ export default {
       link.download = 'mytaskbu_' + String(Date.now()) + '.json'
       link.click()
     },
-    importdata: function () {
-      alert('Comming soon!');
+    importdata: function (event) {
+      let reader = new FileReader()
+      let file = event.target.files[0]
+      let type = file.type
+      if (type != 'application/json') {
+        alert('Invalid data format.');
+        event.currentTarget.value = ''
+        return;
+      }
+      reader.onload = () => {
+        let data = JSON.parse(reader.result);
+        this.$store.commit('task/overwrite', data.task);
+        this.$store.commit('task/archivelist', data.archivetask);
+        this.$store.commit('tag/overwrite', data.tag);
+        alert('Welcome back!!!');
+      };
+      reader.readAsText(file);
     },
     clearTaskData: function () {
       if (! confirm('This operation can not be undone.')) { return; }

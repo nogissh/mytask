@@ -230,8 +230,8 @@ const task = {
       commit('clear');
       commit('clearselect');
       commit('cleararchivelist');
+      dispatch('persistlocalstrage');
       dispatch('persistarchivelistlocalstrage');
-      commit('persistlocalstrage');
       dispatch('presentationlist');
     },
   }

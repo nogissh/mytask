@@ -74,6 +74,24 @@ button.delete {
   background-color: #FF99CC;
 }
 
+label.btn {
+  cursor: pointer;
+}
+label.borderless {
+  border: 0;
+}
+label.round {
+  border-radius: 16px;
+}
+label.action {
+  padding: 8px 16px;
+  border: 0;
+  border-radius: 0;
+}
+label.color-default {
+  background-color: rgb(239, 239, 239);
+}
+
 #app {
   width: 960px;
   margin: 0 auto;
