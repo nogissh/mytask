@@ -79,7 +79,6 @@ export default {
         tag: this.$store.getters['tag/list'],
         archivetask: this.$store.getters['task/archivelist'],
       }
-
       let blob = new Blob([JSON.stringify(data)], { type: 'application/json' })
       let link = document.createElement('a')
       link.href = window.URL.createObjectURL(blob)
