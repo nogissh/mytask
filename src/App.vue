@@ -25,15 +25,8 @@ export default {
   box-sizing: border-box;
 }
 
-#app {
-  width: 960px;
-  margin: 0 auto;
-}
-
-#nav {
-  padding: 16px;
-  background-color: rgb(240, 240, 240);
-  text-align: center;
+p {
+  margin: 0;
 }
 
 button:hover {
@@ -81,6 +74,22 @@ button.delete {
   background-color: #FF99CC;
 }
 
+#app {
+  width: 960px;
+  margin: 0 auto;
+}
+
+#nav {
+  padding: 16px;
+  background-color: rgb(240, 240, 240);
+  text-align: center;
+}
+
+.inline__vertical-middle {
+  height: 100%;
+  vertical-align: middle;
+}
+
 .tasklist_task {
   margin-top: 8px;
   padding: 8px;
@@ -119,6 +128,24 @@ button.delete {
   flex-basis: 80%;
 }
 .tag__flex-operate {
+  flex-basis: 20%;
+}
+
+.cleararea {
+  margin-top: 8px;
+  padding: 8px;
+  border: 1px solid lightgray;
+  border-radius: 4px;
+}
+.cleararea__flex-parent {
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: space-between;
+}
+.cleararea__flex-left {
+  flex-basis: 80%;
+}
+.cleararea__flex-right {
   flex-basis: 20%;
 }
 </style>

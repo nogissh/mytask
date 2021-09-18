@@ -44,6 +44,16 @@ const task = {
     overwrite: function (state, list) {
       state.list = list;
     },
+    clear: function (state) {
+      state.list = [];
+    },
+    clearselect: function (state) {
+      state.select = null;
+    },
+    clearconds: function (state) {
+      state.presentation.mode = false;
+      state.presentation.conds = { tagids: [], done: true };
+    },
     overwritetask: function (state, task) {
       state.list[state.select] = task;
     },
@@ -106,7 +116,10 @@ const task = {
     },
     archivelist: function (state, list) {
       state.archive.list = list;
-    }
+    },
+    cleararchivelist: function (state) {
+      state.archive.list = [];
+    },
   },
   actions: {
     overwritetask ({ commit, dispatch }, task) {
@@ -212,6 +225,15 @@ const task = {
       }
       commit('archivelist', list);
     },
+    clearAll ({ commit, dispatch }) {
+      commit('clearconds');
+      commit('clear');
+      commit('clearselect');
+      commit('cleararchivelist');
+      dispatch('persistarchivelistlocalstrage');
+      commit('persistlocalstrage');
+      dispatch('presentationlist');
+    },
   }
 }
 
@@ -235,6 +257,12 @@ const tag = {
   mutations: {
     overwrite: function (state, list) {
       state.list = list;
+    },
+    clear: function (state) {
+      state.list = [];
+    },
+    clearselect: function (state) {
+      state.select = null;
     },
     overwritetag: function (state, tag) {
       state.list[state.select] = tag;
@@ -281,6 +309,11 @@ const tag = {
       commit('overwrite', list);
       dispatch('persistlocalstrage');
     },
+    clearAll ({ commit, dispatch }) {
+      commit('clear');
+      commit('clearselect');
+      dispatch('persistlocalstrage');
+    }
   }
 }
 
