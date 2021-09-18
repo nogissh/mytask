@@ -122,6 +122,10 @@ const task = {
     },
   },
   actions: {
+    overwrite ({ commit, dispatch }, tasks) {
+      commit('overwrite', tasks);
+      dispatch('persistlocalstrage');
+    },
     overwritetask ({ commit, dispatch }, task) {
       commit('overwritetask', task);
       dispatch('persistlocalstrage');
@@ -225,6 +229,10 @@ const task = {
       }
       commit('archivelist', list);
     },
+    overwritearchivelist ({ commit, dispatch }, archivelist) {
+      commit('archivelist', archivelist);
+      dispatch('persistarchivelistlocalstrage');
+    },
     clearAll ({ commit, dispatch }) {
       commit('clearconds');
       commit('clear');
@@ -290,6 +298,10 @@ const tag = {
       let _ids = state.list.map(tag => String(tag.id));
       let _id = _ids.indexOf(String(id));
       commit('select', _id);
+    },
+    overwrite ({ commit, dispatch }, tags) {
+      commit('overwrite', tags);
+      dispatch('persistlocalstrage');
     },
     overwritetag ({ commit, dispatch }, tag) {
       commit('overwritetag', tag);

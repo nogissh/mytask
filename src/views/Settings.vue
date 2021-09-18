@@ -96,9 +96,9 @@ export default {
       }
       reader.onload = () => {
         let data = JSON.parse(reader.result);
-        this.$store.commit('task/overwrite', data.task);
-        this.$store.commit('task/archivelist', data.archivetask);
-        this.$store.commit('tag/overwrite', data.tag);
+        this.$store.dispatch('task/overwrite', data.task);
+        this.$store.dispatch('task/overwritearchivelist', data.archivetask);
+        this.$store.dispatch('tag/overwrite', data.tag);
         alert('Welcome back!!!');
       };
       reader.readAsText(file);
