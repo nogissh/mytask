@@ -107,11 +107,13 @@ export default {
     clearTaskData: function () {
       if (! confirm('This operation can not be undone.')) { return; }
       this.$store.dispatch('task/clearAll');
+      alert('Task data cleared.')
     },
     clearAllData: function () {
       if (! confirm('This operation can not be undone.')) { return; }
       this.$store.dispatch('task/clearAll');
       this.$store.dispatch('tag/clearAll');
+      alert('All data cleared.')
     }
   }
 }
