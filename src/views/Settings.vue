@@ -9,7 +9,7 @@
             <span class="inline__vertical-middle">Clear task data</span>
           </p>
         </div>
-        <div class="cleararea__flex-right">
+        <div class="cleararea__flex-right" style="text-align: right">
           <span class="inline__vertical-middle">
             <button class="action" @click="clearTaskData">Execute</button>
           </span>
@@ -23,7 +23,7 @@
             <span class="inline__vertical-middle">Clear all data</span>
           </p>
         </div>
-        <div class="cleararea__flex-right">
+        <div class="cleararea__flex-right" style="text-align: right">
           <span class="inline__vertical-middle">
             <button class="action" @click="clearAllData">Execute</button>
           </span>
