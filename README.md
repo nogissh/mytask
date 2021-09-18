@@ -1,24 +1,5 @@
 # mytask
 
-## Project setup
-```
-yarn install
-```
+要望はIssueで受け付けております。
 
-### Compiles and hot-reloads for development
-```
-yarn serve
-```
-
-### Compiles and minifies for production
-```
-yarn build
-```
-
-### Lints and fixes files
-```
-yarn lint
-```
-
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+All your request is accepted in issue.
