@@ -39,6 +39,7 @@ export default {
   methods: {
     add: function (e) {
       if (e.keyCode == 229) return;
+      if (this.form.tag.name == '') { return; }
       this.$store.dispatch('tag/add', createNewTag(Date.now(), this.form.tag.name));
       this.form.tag.name = '';
     }
