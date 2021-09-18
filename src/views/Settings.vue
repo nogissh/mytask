@@ -20,20 +20,6 @@
       <div class="cleararea__flex-parent">
         <div class="cleararea__flex-left">
           <p>
-            <span class="inline__vertical-middle">Clear tag data</span>
-          </p>
-        </div>
-        <div class="cleararea__flex-right">
-          <span class="inline__vertical-middle">
-            <button class="action" @click="clearTagData">Execute</button>
-          </span>
-        </div>
-      </div>
-    </div>
-    <div class="cleararea">
-      <div class="cleararea__flex-parent">
-        <div class="cleararea__flex-left">
-          <p>
             <span class="inline__vertical-middle">Clear all data</span>
           </p>
         </div>
@@ -54,10 +40,6 @@ export default {
     clearTaskData: function () {
       if (! confirm('This operation can not be undone.')) { return; }
       this.$store.dispatch('task/clearAll');
-    },
-    clearTagData: function () {
-      if (! confirm('This operation can not be undone.')) { return; }
-      this.$store.dispatch('tag/clearAll');
     },
     clearAllData: function () {
       if (! confirm('This operation can not be undone.')) { return; }
