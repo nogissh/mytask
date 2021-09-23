@@ -1,8 +1,26 @@
 <template>
   <div class="settings">
     <h1>Settings</h1>
-    <h2>Data</h2>
 
+    <div v-if="notificationPermission != 'granted'">
+      <h2>Notification</h2>
+      <div class="cleararea">
+        <div class="cleararea__flex-parent">
+          <div class="cleararea__flex-left">
+            <p>
+              <span class="inline__vertical-middle">Desktop notification</span>
+            </p>
+          </div>
+          <div class="cleararea__flex-right" style="text-align: right">
+            <span class="inline__vertical-middle">
+              <a @click="desktopNotificationRequest">Request</a>
+            </span>
+          </div>
+        </div>
+      </div>
+    </div>  
+
+    <h2>Data</h2>
     <div>
       <h3>Backup</h3>
       <div class="cleararea">
@@ -72,7 +90,26 @@
 <script>
 export default {
   name: 'SettingsView',
+  data () {
+    return {
+      notificationPermission: window.Notification.permission,
+    }
+  },
   methods: {
+    desktopNotificationRequest: function () {
+      Notification.requestPermission(function (result) {
+        switch (result) {
+          case 'granted':
+            alert('Thanks, desktop notification is enabled.');
+            break;
+          case 'denied':
+            alert('If you want to use notification, you can be enable on setting page.');
+            break;
+          default:
+            break;          
+        }
+      });
+    },
     exportdata: function () {
       let data = {
         task: this.$store.getters['task/list'],
