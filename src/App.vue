@@ -123,6 +123,7 @@ label.color-default {
 #app {
   width: 960px;
   margin: 0 auto;
+  margin-bottom: 256px;
 }
 
 #nav {
