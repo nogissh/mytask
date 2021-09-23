@@ -1,5 +1,5 @@
 <template>
-  <div class="task tasklist_task">
+  <div class="task tasklist_task" v-bind:class="task.done ? 'tasklist_task_done' : ''">
     <div class="tasklist_flexparent">
       <div class="flex-state">
         <input type="checkbox" class="task-checkbox" @click="donetask(task.id)" v-if="task.done === false" />

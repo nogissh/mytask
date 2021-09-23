@@ -139,6 +139,10 @@ label.color-default {
   border-radius: 4px;
 }
 
+.tasklist_task_done {
+  background-color: rgb(240, 240, 240);
+}
+
 .tasklist_flexparent {
   display: flex;
   flex-wrap: nowrap;
