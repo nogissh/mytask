@@ -34,6 +34,9 @@ const task = {
     get: state => {
       return state.list[state.select];
     },
+    gets: state => {
+      return state.list.filter(task => state.presentation.selects.indexOf(task.id) != -1);
+    },
     gettasktagids: state => {
       return state.list[state.select].tags.map(tag => tag.id);
     },
@@ -194,6 +197,16 @@ const task = {
     multipledelete ({ getters, commit, dispatch }) {
       commit('delete', getters.presentationselects);
       commit('presentationselects', null);
+      dispatch('presentationlist');
+    },
+    multipletagging ({ getters, dispatch }, tags) {
+      let selectedTasks = getters.gets;
+      selectedTasks.forEach(task => {
+        dispatch('select', task.id);
+        tags.forEach(tag => {
+          dispatch('pushtag', tag);
+        })
+      })
       dispatch('presentationlist');
     },
     presentationcondstagids ({ state, commit, dispatch }, tagid) {

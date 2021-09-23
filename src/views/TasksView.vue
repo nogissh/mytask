@@ -17,6 +17,7 @@
               <button class="borderless" style="padding: 8px 16px;" @click="archiveDoneTask">Archive done</button>
             </span>
             <span v-else>
+              <button class="borderless" style="padding: 8px 16px; margin-right: 8px;" @click="routeToMultipleTagging">Tagging</button>
               <button class="borderless danger" style="padding: 8px 16px;" @click="deleteMultipleTask">Delete</button>
             </span>
           </td>
@@ -137,6 +138,9 @@ export default {
         return;
       }
       this.$store.dispatch('task/multipledelete');
+    },
+    routeToMultipleTagging: function () {
+      this.$router.push({ name: 'MultipleTagging' });
     }
   },
 }
