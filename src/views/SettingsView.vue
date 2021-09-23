@@ -12,8 +12,11 @@
             </p>
           </div>
           <div class="cleararea__flex-right" style="text-align: right">
-            <span class="inline__vertical-middle">
+            <span class="inline__vertical-middle" v-if="notificationPermission != 'granted'">
               <a @click="desktopNotificationRequest">Request</a>
+            </span>
+            <span v-else>
+              <a @click="desktopNotificationTesting">Test</a>
             </span>
           </div>
         </div>
@@ -110,6 +113,10 @@ export default {
             break;          
         }
       });
+    },
+    desktopNotificationTesting: function () {
+      var n = new Notification({ body: 'This is the test.' });
+      n.onclose = function () { alert('Desktop notification is enabled.'); }
     },
     exportdata: function () {
       let data = {
