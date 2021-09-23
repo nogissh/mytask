@@ -36,6 +36,9 @@ const task = {
     gettasktagids: state => {
       return state.list[state.select].tags.map(tag => tag.id);
     },
+    presentationlist: state => {
+      return state.presentation.list;
+    },
     archivelist: state => {
       return state.archive.list;
     }
