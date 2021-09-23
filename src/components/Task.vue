@@ -6,10 +6,7 @@
         <input type="checkbox" class="task-checkbox" checked @click="undonetask(task.id)" v-else />
       </div>
       <div class="flex-name">
-        <span style="height: 100%; vertical-align: middle;" v-if="task.done === false">
-          <router-link :to="`/tasks/${ task.id }`">{{ task.name }}</router-link>
-        </span>
-        <span style="height: 100%; vertical-align: middle; text-decoration:line-through;" v-else>
+        <span style="height: 100%; vertical-align: middle;" v-bind:style="task.done ? { 'text-decoration': 'line-through' } : {}">
           <router-link :to="`/tasks/${ task.id }`">{{ task.name }}</router-link>
         </span>
       </div>
