@@ -1,5 +1,9 @@
 <template>
   <div class="task tasklist_flexparent">
+    <div class="flex-state">
+      <input type="checkbox" class="task-checkbox" @click="donetask(task.id)" v-if="task.done === false" />
+      <input type="checkbox" class="task-checkbox" checked @click="undonetask(task.id)" v-else />
+    </div>
     <div class="flex-name">
       <span style="height: 100%; vertical-align: middle;" v-if="task.done === false">
         <router-link :to="`/tasks/${ task.id }`">{{ task.name }}</router-link>
@@ -14,11 +18,6 @@
       </span>
     </div>
     <div class="flex-operate" style="text-align: right">
-      <!-- Done Button -->
-      <button @click="donetask(task.id)" class="action done" style="margin-right: 8px;" v-if="task.done === false">Done</button>
-      <button @click="undonetask(task.id)" class="action undone" style="margin-right: 8px;" v-else>Undone</button>
-
-      <!-- Delete Button -->
       <button @click="deltask(task.id)" class="action delete">Delete</button>
     </div>
   </div>
@@ -46,5 +45,9 @@ export default {
 </script>
 
 <style>
-
+.task-checkbox {
+  width: 20px;
+  height: 20px;
+  margin-top: 5px;
+}
 </style>

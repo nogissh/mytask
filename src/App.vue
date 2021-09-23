@@ -121,6 +121,9 @@ label.color-default {
   justify-content: space-between;
 }
 
+.flex-state {
+  flex-basis: 5%;
+}
 .flex-name {
   flex-basis: 50%;
 }
@@ -128,7 +131,7 @@ label.color-default {
   flex-basis: 30%;
 }
 .flex-operate {
-  flex-basis: 20%;
+  flex-basis: 15%;
 }
 
 .taglist_tag {
