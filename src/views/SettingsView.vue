@@ -101,7 +101,7 @@ export default {
         switch (result) {
           case 'granted':
             alert('Thanks, desktop notification is enabled.');
-            var n = new Notification('Do you see desktop notification?');
+            new Notification('Do you see desktop notification?');
             break;
           case 'denied':
             alert('If you want to use notification, you can be enable on setting page.');
