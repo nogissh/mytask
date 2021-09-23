@@ -116,7 +116,7 @@ export default {
     },
     desktopNotificationTesting: function () {
       console.log('hahaha');
-      var n = new Notification({ body: 'This is the test.' });
+      var n = new Notification('title', { body: 'This is the test.' });
       n.onclose = function () { alert('Desktop notification is enabled.'); }
     },
     exportdata: function () {
