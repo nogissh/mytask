@@ -1,22 +1,23 @@
 <template>
   <div class="home">
-    <div style="margin: 16px 0; text-align: center;">
-      <span style="font-weight: bold;">Tag filter</span>: 
-      <span v-for="(tag, index) in tags" :key="index" class="tag" style="margin-right: 4px;" @click="mutatecondtag(tag.id)">{{ tag.name }}</span>
-      <span @click="mutatecondtag(null)">reset</span>
+    <div style="margin-top: 32px;">
+      <table style="width: 100%;">
+        <tr>
+          <td style="width: 15%;">
+            <button @click="showTopTaskForm" class="borderless" style="padding: 8px 16px;" v-if="form.task.top.visible === false">Create new task</button>
+          </td>
+          <td style="width: 60%; overflow: hidden;">
+            <span v-for="(tag, index) in tags" :key="index" class="tag" v-bind:class="tagfilterselected.indexOf(tag.id) == -1 ? 'tagfilter' : 'tagfilterused'" style="margin-right: 4px;" @click="mutatecondtag(tag.id)">{{ tag.name.slice(0, 3) }}</span>
+            <span @click="mutatecondtag(null)" style="margin-left: 4px; font-size: 12px; cursor: pointer;" v-if="tagfilterselected.length > 0">Clear</span>
+          </td>
+          <td style="width: 25%; text-align: right">
+            <button class="borderless" style="padding: 8px 16px; margin-right: 8px;" @click="hideDoneTask" v-if="donetaskvisible">Hide done</button>
+            <button class="borderless" style="padding: 8px 16px; margin-right: 8px;" @click="showDoneTask" v-else>Show done</button>
+            <button class="borderless" style="padding: 8px 16px;" @click="archiveDoneTask">Archive done</button>
+          </td>
+        </tr>
+      </table>
     </div>
-    <table style="width: 100%;">
-      <tr>
-        <td style="width: 50%;">
-          <button @click="showTopTaskForm" class="borderless" style="padding: 8px 16px;" v-if="form.task.top.visible === false">Create new task</button>
-        </td>
-        <td style="width: 50%; text-align: right">
-          <button class="borderless" style="padding: 8px 16px; margin-right: 8px;" @click="hideDoneTask" v-if="donetaskvisible">Hide done</button>
-          <button class="borderless" style="padding: 8px 16px; margin-right: 8px;" @click="showDoneTask" v-else>Show done</button>
-          <button class="borderless" style="padding: 8px 16px;" @click="archiveDoneTask">Archive done</button>
-        </td>
-      </tr>
-    </table>
     <div v-if="form.task.top.visible">
       <div class="tasklist_task">
         <input type="text" placeholder="Enter your new task..." style="width: 50%; font-size: 16px; padding: 4px;" v-model="form.task.top.name" @keydown.enter="unshift" />
@@ -74,6 +75,7 @@ export default {
     ...mapState({
       presentationmode: state => state.task.presentation.mode,
       tags: state => state.tag.list,
+      tagfilterselected: state => state.task.presentation.conds.tagids,
       donetaskvisible: state => state.task.presentation.conds.done,
     })
   },

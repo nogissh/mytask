@@ -48,6 +48,30 @@ span.tag {
   padding: 4px 8px;
   border-radius: 16px;
   background-color: lightgray;
+  font-size: 13px;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+span.tagfilter {
+  background-color: #fff;
+  border: 1px solid lightgray;
+}
+
+span.tagfilter:hover {
+  background-color: lightblue;
+  border: 1px solid lightblue;
+  cursor: pointer;
+}
+
+span.tagfilterused {
+  background-color: lightskyblue;
+  border: 1px solid lightskyblue;
+}
+
+span.tagfilterused:hover {
+  cursor: pointer;
 }
 
 button.borderless {
