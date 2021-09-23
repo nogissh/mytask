@@ -18,7 +18,7 @@ import { createNewTag } from '../utils.js';
 import TagList from '@/components/TagList.vue';
 
 export default {
-  name: 'Tags',
+  name: 'TagsView',
   components: {
     TagList
   },

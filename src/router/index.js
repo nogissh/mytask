@@ -1,11 +1,11 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
-import Tasks from '../views/Tasks.vue'
-import Task from '../views/Task.vue'
-import Tags from '../views/Tags.vue'
-import Tag from '../views/Tag.vue'
-import TaskTag from '../views/TaskTag.vue'
-import Settings from '../views/Settings.vue'
+import TasksView from '../views/TasksView.vue'
+import TaskView from '../views/TaskView.vue'
+import TagsView from '../views/TagsView.vue'
+import TagView from '../views/TagView.vue'
+import TaskTagView from '../views/TaskTagView.vue'
+import SettingsView from '../views/SettingsView.vue'
 
 Vue.use(VueRouter)
 
@@ -13,37 +13,37 @@ const routes = [
   {
     path: '/',
     name: 'Home',
-    component: Tasks
+    component: TasksView
   },
   {
     path: '/tasks',
     name: 'Tasks',
-    component: Tasks
+    component: TasksView
   },
   {
     path: '/tasks/:id',
     name: 'Task',
-    component: Task
+    component: TaskView
   },
   {
     path: '/tasks/:id/tag',
     name: 'TaskTag',
-    component: TaskTag
+    component: TaskTagView
   },
   {
     path: '/tags',
     name: 'Tags',
-    component: Tags
+    component: TagsView
   },
   {
     path: '/tags/:id',
     name: 'Tag',
-    component: Tag
+    component: TagView
   },
   {
     path: '/settings',
     name: 'Settings',
-    component: Settings
+    component: SettingsView
   },
 ]
 

@@ -49,7 +49,7 @@ import PresentationTaskList from '@/components/TaskList/Presentation.vue';
 import MasterTaskList from '@/components/TaskList/Master.vue';
 
 export default {
-  name: 'Home',
+  name: 'TasksView',
   components: {
     MasterTaskList,
     PresentationTaskList,

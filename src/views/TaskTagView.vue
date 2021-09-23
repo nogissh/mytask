@@ -21,7 +21,7 @@
 import { mapState } from 'vuex';
 
 export default {
-  name: 'TaskTag',
+  name: 'TaskTagView',
   computed: {
     ...mapState({
       task: state => state.task.list[state.task.select],

@@ -71,7 +71,7 @@
 
 <script>
 export default {
-  name: 'Settings',
+  name: 'SettingsView',
   methods: {
     exportdata: function () {
       let data = {

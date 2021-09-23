@@ -59,7 +59,7 @@
 
 <script>
 export default {
-  name: 'Task',
+  name: 'TaskView',
   computed: {
     task: {
       get() {

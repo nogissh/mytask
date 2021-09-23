@@ -26,7 +26,7 @@
 
 <script>
 export default {
-  name: 'Tag',
+  name: 'TagView',
   computed: {
     tag: {
       get() {
