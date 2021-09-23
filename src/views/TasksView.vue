@@ -11,9 +11,14 @@
             <span @click="mutatecondtag(null)" style="margin-left: 4px; font-size: 12px; cursor: pointer;" v-if="tagfilterselected.length > 0">Clear</span>
           </td>
           <td style="width: 25%; text-align: right">
-            <button class="borderless" style="padding: 8px 16px; margin-right: 8px;" @click="hideDoneTask" v-if="donetaskvisible">Hide done</button>
-            <button class="borderless" style="padding: 8px 16px; margin-right: 8px;" @click="showDoneTask" v-else>Show done</button>
-            <button class="borderless" style="padding: 8px 16px;" @click="archiveDoneTask">Archive done</button>
+            <span v-if="presentationselects.length == 0">
+              <button class="borderless" style="padding: 8px 16px; margin-right: 8px;" @click="hideDoneTask" v-if="donetaskvisible">Hide done</button>
+              <button class="borderless" style="padding: 8px 16px; margin-right: 8px;" @click="showDoneTask" v-else>Show done</button>
+              <button class="borderless" style="padding: 8px 16px;" @click="archiveDoneTask">Archive done</button>
+            </span>
+            <span v-else>
+              <button class="borderless delete" style="padding: 8px 16px;" @click="deleteMultipleTask">Delete</button>
+            </span>
           </td>
         </tr>
       </table>
@@ -77,7 +82,12 @@ export default {
       tags: state => state.tag.list,
       tagfilterselected: state => state.task.presentation.conds.tagids,
       donetaskvisible: state => state.task.presentation.conds.done,
-    })
+    }),
+    presentationselects: {
+      get () {
+        return this.$store.getters['task/presentationselects'];
+      }
+    }
   },
   methods: {
     unshift: function (e)
@@ -121,6 +131,12 @@ export default {
         return;
       }
       this.$store.dispatch('task/archivedonetask');
+    },
+    deleteMultipleTask: function () {
+      if (! confirm('Delete multiple task is never restore. [y/N]')) {
+        return;
+      }
+      this.$store.dispatch('task/multipledelete');
     }
   },
 }

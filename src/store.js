@@ -14,6 +14,7 @@ const task = {
     presentation: {
       mode: false,
       list: [],
+      selects: [],
       conds: {
         tagids: [],
         done: true,
@@ -38,6 +39,9 @@ const task = {
     },
     presentationlist: state => {
       return state.presentation.list;
+    },
+    presentationselects: state => {
+      return state.presentation.selects;
     },
     archivelist: state => {
       return state.archive.list;
@@ -66,8 +70,11 @@ const task = {
     unshift: function (state, task) {
       state.list.unshift(task);
     },
-    delete: function (state, id) {
-      state.list = state.list.filter(task => task.id != id);
+    delete: function (state, ids) {
+      if (typeof(ids) == 'number') {
+        ids = [ids];
+      }
+      state.list = state.list.filter(task => ids.indexOf(task.id) == -1);
     },
     select: function (state, idx) {
       state.select = idx;
@@ -101,6 +108,18 @@ const task = {
         _list = _list.filter(task => task.done == false);
       }
       state.presentation.list = _list;
+    },
+    presentationselects: function (state, taskid) {
+      if (taskid == null) {
+        state.presentation.selects = [];
+        return;
+      }
+      let index = state.presentation.selects.indexOf(taskid);
+      if (index < 0) {
+        state.presentation.selects.push(taskid);
+      } else {
+        state.presentation.selects.splice(index, 1);
+      }
     },
     presentationcondstagids: function (state, tagid) {
       if (tagid == null) {
@@ -166,6 +185,15 @@ const task = {
     },
     deletetag ({ commit, dispatch }, tagid) {
       commit('deletetag', tagid);
+      dispatch('presentationlist');
+    },
+    presentationselects ({ commit, dispatch }, taskid) {
+      commit('presentationselects', taskid);
+      dispatch('presentationlist');
+    },
+    multipledelete ({ getters, commit, dispatch }) {
+      commit('delete', getters.presentationselects);
+      commit('presentationselects', null);
       dispatch('presentationlist');
     },
     presentationcondstagids ({ state, commit, dispatch }, tagid) {

@@ -139,6 +139,10 @@ label.color-default {
   border-radius: 4px;
 }
 
+.tasklist_task_selected {
+  background-color: rgb(224, 255, 255);
+}
+
 .tasklist_task_done {
   background-color: rgb(240, 240, 240);
 }
