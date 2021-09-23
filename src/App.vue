@@ -88,13 +88,17 @@ button.action {
   border: 0;
   border-radius: 0;
 }
+button.danger {
+  background-color: crimson;
+  color: white;
+}
 button.done {
   background-color: #9FF0FF;
 }
 button.undone {
   background-color: #F5F5F5;
 }
-button.delete {
+button.delete:hover {
   background-color: #FF99CC;
 }
 

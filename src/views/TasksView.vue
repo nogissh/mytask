@@ -17,7 +17,7 @@
               <button class="borderless" style="padding: 8px 16px;" @click="archiveDoneTask">Archive done</button>
             </span>
             <span v-else>
-              <button class="borderless delete" style="padding: 8px 16px;" @click="deleteMultipleTask">Delete</button>
+              <button class="borderless danger" style="padding: 8px 16px;" @click="deleteMultipleTask">Delete</button>
             </span>
           </td>
         </tr>
