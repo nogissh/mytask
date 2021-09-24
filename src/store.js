@@ -20,9 +20,6 @@ const task = {
         done: true,
       }
     },
-    archive: {
-      list: []
-    }
   },
   getters: {
     getTask: state => {
@@ -46,9 +43,6 @@ const task = {
     presentationselects: state => {
       return state.presentation.selects;
     },
-    archivelist: state => {
-      return state.archive.list;
-    }
   },
   mutations: {
     overwrite: function (state, list) {
@@ -138,12 +132,6 @@ const task = {
     },
     presentationcondsdone: function (state, status) {
       state.presentation.conds.done = status;
-    },
-    archivelist: function (state, list) {
-      state.archive.list = list;
-    },
-    cleararchivelist: function (state) {
-      state.archive.list = [];
     },
   },
   actions: {
@@ -255,35 +243,18 @@ const task = {
       dispatch('presentationlist');
     },
     archivedonetask ({ getters, commit, dispatch }) {
-      var archivetasks = getters['archivelist'];
       var newarchivetasks = getters.list.filter(task => task.done == false);
       var donetasks = getters.list.filter(task => task.done == true);
       commit('overwrite', newarchivetasks);
-      commit('archivelist', archivetasks.concat(donetasks))
       dispatch('presentationlist');
-      dispatch('persistarchivelistlocalstrage');
-    },
-    persistarchivelistlocalstrage ({ getters }) {
-      window.localStorage.setItem('archivedtasks', JSON.stringify(getters.archivelist));
-    },
-    readarchivelistlocalstorage ({ commit }) {
-      let list = JSON.parse(window.localStorage.getItem('archivedtasks'));
-      if (list == null) {
-        list = [];
-      }
-      commit('archivelist', list);
-    },
-    overwritearchivelist ({ commit, dispatch }, archivelist) {
-      commit('archivelist', archivelist);
-      dispatch('persistarchivelistlocalstrage');
+      dispatch('archivetask/concat', donetasks, { root: true });
+      dispatch('archivetask/persist', null, { root: true });
     },
     clearAll ({ commit, dispatch }) {
       commit('clearconds');
       commit('clear');
       commit('clearselect');
-      commit('cleararchivelist');
       dispatch('persistlocalstrage');
-      dispatch('persistarchivelistlocalstrage');
       dispatch('presentationlist');
     },
   }
@@ -373,9 +344,52 @@ const tag = {
   }
 }
 
+const archivetask = {
+  namespaced: true,
+  state: {
+    list: [],
+  },
+  getters: {
+    list: function (state) {
+      return state.list;
+    }
+  },
+  mutations: {
+    list: function (state, list) {
+      state.list = list;
+    }
+  },
+  actions: {
+    overwrite ({ commit, dispatch }, list) {
+      commit('list', list);
+      dispatch('persist');
+    },
+    concat ({ getters, commit, dispatch }, newList) {
+      let list = getters.list;
+      commit('list', list.concat(newList));
+      dispatch('persist');
+    },
+    clear ({ commit, dispatch }) {
+      commit('list', []);
+      dispatch('persist');
+    },
+    persist ({ getters }) {
+      window.localStorage.setItem('archivetasks', JSON.stringify(getters.list));
+    },
+    read ({ commit }) {
+      let list = JSON.parse(window.localStorage.getItem('archivetasks'));
+      if (list == null) {
+        list = [];
+      }
+      commit('list', list);
+    },
+  }
+}
+
 export default new Vuex.Store({
   modules: {
     task,
-    tag
+    tag,
+    archivetask,
   }
 });

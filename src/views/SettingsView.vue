@@ -122,7 +122,7 @@ export default {
       let data = {
         task: this.$store.getters['task/list'],
         tag: this.$store.getters['tag/list'],
-        archivetask: this.$store.getters['task/archivelist'],
+        archivetask: this.$store.getters['archivetask/list'],
       }
       let blob = new Blob([JSON.stringify(data)], { type: 'application/json' })
       let link = document.createElement('a')
@@ -142,8 +142,8 @@ export default {
       reader.onload = () => {
         let data = JSON.parse(reader.result);
         this.$store.dispatch('task/overwrite', data.task);
-        this.$store.dispatch('task/overwritearchivelist', data.archivetask);
         this.$store.dispatch('tag/overwrite', data.tag);
+        this.$store.dispatch('archivetask/overwrite', data.archivetask);
         alert('Welcome back!!!');
       };
       reader.readAsText(file);
@@ -157,6 +157,7 @@ export default {
       if (! confirm('This operation can not be undone.')) { return; }
       this.$store.dispatch('task/clearAll');
       this.$store.dispatch('tag/clearAll');
+      this.$store.dispatch('archivetask/clear');
       alert('All data cleared.')
     }
   }

@@ -31,7 +31,7 @@ export default {
   beforeMount () {
     this.$store.dispatch('task/readlocalstorage');
     this.$store.dispatch('tag/readlocalstorage');
-    this.$store.dispatch('task/readarchivelistlocalstorage');
+    this.$store.dispatch('archivetask/read');
   }
 }
 </script>

@@ -12,7 +12,7 @@ export default {
       let data = {
         task: this.$store.getters['task/list'],
         tag: this.$store.getters['tag/list'],
-        archivetask: this.$store.getters['task/archivelist'],
+        archivetask: this.$store.getters['archivetask/list'],
       }
       let blob = new Blob([JSON.stringify(data)], { type: 'application/json' })
       let link = document.createElement('a')
