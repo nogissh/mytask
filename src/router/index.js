@@ -7,6 +7,7 @@ import TagView from '../views/TagView.vue'
 import TaskTagView from '../views/TaskTagView.vue'
 import SettingsView from '../views/SettingsView.vue'
 import MultipleTaggingView from '../views/MultipleTaggingView.vue'
+import ArchiveTasksView from '../views/ArchiveTasksView.vue'
 
 Vue.use(VueRouter)
 
@@ -45,6 +46,11 @@ const routes = [
     path: '/multipletagging',
     name: 'MultipleTagging',
     component: MultipleTaggingView
+  },
+  {
+    path: '/archivetasks',
+    name: 'ArchiveTasksView',
+    component: ArchiveTasksView
   },
   {
     path: '/settings',

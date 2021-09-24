@@ -24,6 +24,11 @@
     </div>  
 
     <h2>Data</h2>
+    <ul>
+      <li>
+        <router-link :to="{ name: 'ArchiveTasksView' }">Archive tasks</router-link>
+      </li>
+    </ul>
     <div>
       <h3>Backup</h3>
       <div class="cleararea">
