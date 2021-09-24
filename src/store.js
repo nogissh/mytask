@@ -373,9 +373,39 @@ const tag = {
   }
 }
 
+const archivetask = {
+  namespaced: true,
+  state: {
+    list: [],
+  },
+  getters: {
+    list: function (state) {
+      return state.list;
+    }
+  },
+  mutations: {
+    list: function (state, list) {
+      state.list = list;
+    }
+  },
+  actions: {
+    persist ({ getters }) {
+      window.localStorage.setItem('archivedtasks', JSON.stringify(getters.list));
+    },
+    readStorage ({ commit }) {
+      let list = JSON.parse(window.localStorage.getItem('archivedtasks'));
+      if (list == null) {
+        list = [];
+      }
+      commit('list', list);
+    },
+  }
+}
+
 export default new Vuex.Store({
   modules: {
     task,
-    tag
+    tag,
+    archivetask,
   }
 });
