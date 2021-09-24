@@ -6,12 +6,18 @@
       <router-link to="/settings">Setting</router-link>
     </header>
     <router-view/>
+    <floating-side-menu />
   </div>
 </template>
 
 <script>
+import FloatingSideMenu from './components/FloatingSideMenu.vue';
+
 export default {
   name: 'App',
+  components: {
+    FloatingSideMenu,
+  },
   beforeMount () {
     this.$store.dispatch('task/readlocalstorage');
     this.$store.dispatch('tag/readlocalstorage');

@@ -127,7 +127,7 @@ export default {
       let blob = new Blob([JSON.stringify(data)], { type: 'application/json' })
       let link = document.createElement('a')
       link.href = window.URL.createObjectURL(blob)
-      link.download = 'mytaskbu_' + String(Date.now()) + '.json'
+      link.download = 'mytask_backup_' + String(Date.now()) + '.json'
       link.click()
     },
     importdata: function (event) {
