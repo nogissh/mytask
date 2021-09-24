@@ -1,6 +1,6 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "7a62b315264c341d40801c19e19c1c27",
+    "revision": "f190a0a00ef855709521ebbc9d1f9dd3",
     "url": "/mytask/index.html"
   },
   {
@@ -16,12 +16,12 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/mytask/robots.txt"
   },
   {
-    "revision": "cb03f28628b52e489013",
-    "url": "/mytask/static/css/app.8ea36ffd.css"
+    "revision": "a9377ad511db67ef9ba1",
+    "url": "/mytask/static/css/app.7d2026f8.css"
   },
   {
-    "revision": "cb03f28628b52e489013",
-    "url": "/mytask/static/js/app.7a856bb4.js"
+    "revision": "a9377ad511db67ef9ba1",
+    "url": "/mytask/static/js/app.fdb14b5f.js"
   },
   {
     "revision": "8be828a057a76d3c4b74",
