@@ -1,5 +1,5 @@
 <template>
-  <div class="task tasklist_task" v-bind:class="presentationselects.indexOf(task.id) >= 0 ? 'tasklist_task_selected' : task.done ? 'tasklist_task_done' : ''" @click="select(task.id)">
+  <div class="task tasklist_task" v-bind:class="presentationselects.indexOf(task.id) >= 0 ? 'tasklist_task_selected' : task.done ? 'tasklist_task_done' : ''" @click.exact="select(task.id)" @click.shift="test(task.id)">
     <div class="tasklist_flexparent">
       <div class="flex-state">
         <input type="checkbox" class="task-checkbox" @click.stop="donetask(task.id)" v-if="task.done === false" />
@@ -48,6 +48,26 @@ export default {
     },
     select: function (id) {
       this.$store.dispatch('task/presentationselects', id);
+    },
+    test: function (taskid) {
+      let selects = this.$store.getters['task/presentationselects'];
+      if (selects.length > 1) {
+        alert('you cannot do it.');
+        return;
+      }
+
+      let tasks = this.$store.getters['task/list'];
+      let taskids = tasks.map(task => task.id);
+      let startpoint = taskids.indexOf(selects[0]);
+      let selectedpoint = taskids.indexOf(taskid);
+      let minpoint = Math.min(startpoint, selectedpoint);
+      let maxpoint = Math.max(startpoint, selectedpoint);
+
+      let si = selectedpoint < startpoint ? 0 : 1;
+      let ei = selectedpoint < startpoint ? 1 : 0;
+      for (let i = si; i <= (maxpoint - minpoint - ei); i++) {
+        this.$store.dispatch('task/presentationselects', tasks[minpoint + i].id);
+      }
     }
   },
 }
