@@ -45,6 +45,7 @@
     <div style="text-align: center; margin-top: 8px;" v-if="form.task.bottom.visible === false">
       <button @click="showBottomTaskForm" class="wide round borderless" style="padding: 8px 16px;">Create new task</button>
     </div>
+    <floating-bottom-menu v-if="presentationselects.length > 0" />
   </div>
 </template>
 
@@ -54,12 +55,14 @@ import { createNewTask } from '../utils.js';
 
 import PresentationTaskList from '@/components/TaskList/Presentation.vue';
 import MasterTaskList from '@/components/TaskList/Master.vue';
+import FloatingBottomMenu from '@/components/FloatingArea/BottomMenu.vue';
 
 export default {
   name: 'TasksView',
   components: {
     MasterTaskList,
     PresentationTaskList,
+    FloatingBottomMenu,
   },
   data () {
     return {

@@ -7,26 +7,16 @@
     </header>
     <router-view/>
     <floating-side-menu />
-    <floating-bottom-menu v-if="selects.length > 0" />
   </div>
 </template>
 
 <script>
 import FloatingSideMenu from './components/FloatingSideMenu.vue';
-import FloatingBottomMenu from './components/FloatingArea/BottomMenu.vue';
 
 export default {
   name: 'App',
   components: {
     FloatingSideMenu,
-    FloatingBottomMenu,
-  },
-  computed: {
-    selects: {
-      get () {
-        return this.$store.getters['task/presentationselects'];
-      }
-    }
   },
   beforeMount () {
     this.$store.dispatch('task/readlocalstorage');
