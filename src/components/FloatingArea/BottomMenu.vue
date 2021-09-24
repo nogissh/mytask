@@ -1,6 +1,11 @@
 <template>
   <div id="floating-bottom-menu" style="text-align: center">
-    <button class="borderless round stdpadding fbm" @click="cancel">Cancel select</button>
+    <div style="margin-top: 16px">
+      Multiple selection mode
+    </div>
+    <div style="margin: 16px auto">
+      <button class="borderless round stdpadding" @click="cancel">Cancel</button>
+    </div>
   </div>
 </template>
 
@@ -25,9 +30,5 @@ export default {
   background-color: white;
   box-shadow: 0 6px 3px 1px rgba(196, 196, 196, 0.8);
   border-radius: 3px;
-}
-
-button.fbm {
-  margin: 16px;
 }
 </style>
