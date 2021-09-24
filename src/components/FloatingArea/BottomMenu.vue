@@ -1,10 +1,12 @@
 <template>
   <div id="floating-bottom-menu" style="text-align: center">
     <div style="margin-top: 16px">
-      Multiple selection mode
+      <span style="font-weight: bold">Multiple selection mode</span>
     </div>
     <div style="margin: 16px auto">
       <button class="borderless round stdpadding" @click="cancel">Cancel</button>
+      <button class="borderless round stdpadding primary" style="margin-left: 16px" @click="routeToMultipleTagging">Tagging</button>
+      <button class="borderless round stdpadding danger" style="margin-left: 16px" @click="deleteMultipleTask">Delete</button>
     </div>
   </div>
 </template>
@@ -15,7 +17,16 @@ export default {
   methods: {
     cancel: function () {
       this.$store.dispatch('task/presentationselects', null);
-    }
+    },
+    routeToMultipleTagging: function () {
+      this.$router.push({ name: 'MultipleTagging' });
+    },
+    deleteMultipleTask: function () {
+      if (! confirm('Delete multiple task is never restore. [y/N]')) {
+        return;
+      }
+      this.$store.dispatch('task/multipledelete');
+    },
   }
 }
 </script>

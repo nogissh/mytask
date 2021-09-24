@@ -97,6 +97,10 @@ button.action {
   border: 0;
   border-radius: 0;
 }
+button.primary {
+  background-color: royalblue;
+  color: white;
+}
 button.danger {
   background-color: crimson;
   color: white;
