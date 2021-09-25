@@ -23,7 +23,7 @@
       </table>
     </div>
     <div style="width: 100%; text-align: center">
-      <button @click="update">Update</button>
+      <button @click="apply">Apply</button>
     </div>
   </div>
 </template>
@@ -56,7 +56,8 @@ export default {
       let index = this.selectedtags.indexOf(tagid);
       this.selectedtags.splice(index, 1);
     },
-    update: function () {
+    apply: function () {
+      if (! confirm('Overwrites task tag.\nThis operation will not be able to undone.')) return;
       let _tags = this.tags.filter(tag => this.selectedtags.indexOf(tag.id) >= 0);
       this.$store.dispatch('task/multipletagging', _tags);
 

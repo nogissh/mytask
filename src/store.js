@@ -82,6 +82,9 @@ const task = {
     undone: function (state, idx) {
       state.list[idx].done = false;
     },
+    overwritetag: function (state, tags) {
+      state.list[state.select].tags = tags;
+    },
     pushtag: function (state, tag) {
       state.list[state.select].tags.push(tag);
     },
@@ -194,13 +197,11 @@ const task = {
       commit('presentationselects', null);
       dispatch('presentationlist');
     },
-    multipletagging ({ getters, dispatch }, tags) {
+    multipletagging ({ getters, commit, dispatch }, tags) {
       let selectedTasks = getters.gets;
       selectedTasks.forEach(task => {
         dispatch('select', task.id);
-        tags.forEach(tag => {
-          dispatch('pushtag', tag);
-        })
+        commit('overwritetag', tags);
       })
       dispatch('presentationlist');
     },

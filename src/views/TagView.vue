@@ -36,6 +36,7 @@ export default {
   },
   methods: {
     update: function () {
+      if (! confirm('Tags that are already tagged will not be renamed.')) return;
       this.$store.dispatch('tag/overwritetag', this.tag);
       alert('Success!')
     }
