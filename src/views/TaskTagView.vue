@@ -12,6 +12,9 @@
       </tr>
     </table>
     <div style="margin-top: 24px; text-align: center">
+      <a @click="cleartag">Remove all tags</a>
+    </div>
+    <div style="margin-top: 24px; text-align: center">
       <a @click="$router.go(-1)">Back to detail</a>
     </div>
   </div>
@@ -44,7 +47,14 @@ export default {
     },
     deletetag: function (tagid) {
       this.$store.dispatch('task/deletetag', tagid);
+    },
+    cleartag: function () {
+      if (! confirm('This operation does not undone.')) return;
+      this.$store.dispatch('task/cleartag');
     }
+  },
+  beforeMount () {
+    this.$store.dispatch('task/select', this.$route.params.id);
   },
 }
 </script>

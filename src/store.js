@@ -88,6 +88,9 @@ const task = {
     deletetag: function (state, tagid) {
       state.list[state.select].tags = state.list[state.select].tags.filter(tag => tag.id != tagid);
     },
+    cleartag: function (state) {
+      state.list[state.select].tags = [];
+    },
     presentationmode: function (state, status) {
       state.presentation.mode = status;
     },
@@ -176,6 +179,10 @@ const task = {
     },
     deletetag ({ commit, dispatch }, tagid) {
       commit('deletetag', tagid);
+      dispatch('presentationlist');
+    },
+    cleartag ({ commit, dispatch }) {
+      commit('cleartag');
       dispatch('presentationlist');
     },
     presentationselects ({ commit, dispatch }, taskid) {
