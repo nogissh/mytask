@@ -22,6 +22,7 @@ export default {
     this.$store.dispatch('task/readlocalstorage');
     this.$store.dispatch('tag/readlocalstorage');
     this.$store.dispatch('archivetask/read');
+    this.$store.dispatch('backlog/read');
   }
 }
 </script>

@@ -128,6 +128,7 @@ export default {
         task: this.$store.getters['task/list'],
         tag: this.$store.getters['tag/list'],
         archivetask: this.$store.getters['archivetask/list'],
+        backlog: this.$store.getters['backlog/list'],
       }
       let blob = new Blob([JSON.stringify(data)], { type: 'application/json' })
       let link = document.createElement('a')
@@ -149,6 +150,7 @@ export default {
         this.$store.dispatch('task/overwrite', data.task);
         this.$store.dispatch('tag/overwrite', data.tag);
         this.$store.dispatch('archivetask/overwrite', data.archivetask);
+        this.$store.dispatch('backlog/overwrite', data.backlog);
         alert('Welcome back!!!');
       };
       reader.readAsText(file);
@@ -163,6 +165,7 @@ export default {
       this.$store.dispatch('task/clearAll');
       this.$store.dispatch('tag/clearAll');
       this.$store.dispatch('archivetask/clear');
+      this.$store.dispatch('backlog/clear');
       alert('All data cleared.')
     }
   }

@@ -394,10 +394,72 @@ const archivetask = {
   }
 }
 
+const backlog = {
+  namespaced: true,
+  state: {
+    list: []
+  },
+  getters: {
+    list: function (state) {
+      return state.list;
+    }
+  },
+  mutations: {
+    list: function (state, list) {
+      state.list = list;
+    },
+    push: function (state, task) {
+      state.list.push(task);
+    },
+    unshift: function (state, task) {
+      state.list.unshift(task);
+    },
+    delete: function (state, ids) {
+      if (typeof(ids) == 'number') {
+        ids = [ids];
+      }
+      state.list = state.list.filter(task => ids.indexOf(task.id) == -1);
+    },
+  },
+  actions: {
+    persist ({ getters }) {
+      window.localStorage.setItem('backlog', JSON.stringify(getters.list));
+    },
+    read ({ commit }) {
+      let list = JSON.parse(window.localStorage.getItem('backlog'));
+      if (list == null) {
+        list = [];
+      }
+      commit('list', list);
+    },
+    overwrite ({ commit, dispatch }, list) {
+      commit('list', list);
+      dispatch('persist');
+    },
+    clear ({ commit, dispatch }) {
+      commit('list', []);
+      dispatch('persist');
+    },
+    push ({ commit, dispatch }, task) {
+      commit('push', task);
+      dispatch('persist');
+    },
+    unshift ({ commit, dispatch }, task) {
+      commit('unshift', task);
+      dispatch('persist');
+    },
+    delete ({ commit, dispatch }, id) {
+      commit('delete', id);
+      dispatch('persist');
+    },
+  }
+}
+
 export default new Vuex.Store({
   modules: {
     task,
     tag,
     archivetask,
+    backlog,
   }
 });
