@@ -26,6 +26,7 @@
               </span>
             </div>
             <div class="backlog__flex-operate" style="text-align: right">
+              <button class="action" style="margin-right: 8px" @click="jumpToBacklogDeployment(index)">Deploy</button>
               <button @click.stop="del(task.id)" class="action delete">Delete</button>
             </div>
           </div>
@@ -113,6 +114,9 @@ export default {
       }
       this.$store.dispatch('backlog/delete', id);
     },
+    jumpToBacklogDeployment: function (idx) {
+      this.$router.push({ name: 'BacklogDeployment', params: { id: this.list[idx].id }})
+    }
   }
 }
 </script>
