@@ -106,7 +106,14 @@ export default {
     {
       if (e.keyCode == 229) return;
       if (this.form.task.top.name == '') { return; }
-      this.$store.dispatch('task/unshift', createNewTask(Date.now(), this.form.task.top.name));
+      let task = createNewTask(Date.now(), this.form.task.top.name);
+      let tags = this.$store.getters['tag/list'];
+      let selectedTagIds = this.$store.getters['task/presentationcondstagids'];
+
+      // Set tag to task
+      task.tags = tags.filter(tag => selectedTagIds.indexOf(tag.id) != -1);
+
+      this.$store.dispatch('task/unshift', task);
       this.hideTopTaskForm();
       this.form.task.top.name = '';
     },
@@ -114,7 +121,15 @@ export default {
     {
       if (e.keyCode == 229) return;
       if (this.form.task.bottom.name == '') { return; }
-      this.$store.dispatch('task/push', createNewTask(Date.now(), this.form.task.bottom.name));
+
+      let task = createNewTask(Date.now(), this.form.task.bottom.name);
+      let tags = this.$store.getters['tag/list'];
+      let selectedTagIds = this.$store.getters['task/presentationcondstagids'];
+
+      // Set tag to task
+      task.tags = tags.filter(tag => selectedTagIds.indexOf(tag.id) != -1);
+
+      this.$store.dispatch('task/push', task);
       this.form.task.bottom.name = '';
     },
     mutatecondtag: function (tagid) {

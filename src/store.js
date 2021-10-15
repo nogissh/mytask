@@ -43,6 +43,9 @@ const task = {
     presentationselects: state => {
       return state.presentation.selects;
     },
+    presentationcondstagids: state => {
+      return state.presentation.conds.tagids;
+    }
   },
   mutations: {
     overwrite: function (state, list) {
