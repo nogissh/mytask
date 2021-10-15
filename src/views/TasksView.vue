@@ -51,6 +51,8 @@
     <div>
       <backlog-container />
     </div>
+
+    <!-- Floating -->
     <floating-bottom-menu v-if="presentationselects.length > 0" />
   </div>
 </template>
