@@ -24,6 +24,11 @@
     </div>
     <div style="width: 100%; text-align: center">
       <button @click="apply">Apply</button>
+      <div style="margin-top: 8px">
+        <label for="skipCheckingCheckbox">
+          <input id="skipCheckingCheckbox" type="checkbox" v-model="skipChecking" @click="rememberMeSkipChecking" />Skip checking
+        </label>
+      </div>
     </div>
   </div>
 </template>
@@ -31,6 +36,12 @@
 <script>
 export default {
   name: 'MultipleTaggingView',
+  data () {
+    return {
+      selectedtags: [],
+      skipChecking: false,
+    }
+  },
   computed: {
     selectedtasks: {
       get () {
@@ -43,11 +54,6 @@ export default {
       }
     }
   },
-  data () {
-    return {
-      selectedtags: [],
-    }
-  },
   methods: {
     select: function (tagid) {
       this.selectedtags.push(tagid);
@@ -57,15 +63,33 @@ export default {
       this.selectedtags.splice(index, 1);
     },
     apply: function () {
-      if (! confirm('Overwrites task tag.\nThis operation will not be able to undone.')) return;
+      if (!this.skipChecking) {
+        if (! confirm('Overwrites task tag.\nThis operation will not be able to undone.')) return;
+      }
       let _tags = this.tags.filter(tag => this.selectedtags.indexOf(tag.id) >= 0);
       this.$store.dispatch('task/multipletagging', _tags);
 
       // After completed
-      alert('Completed.')
+      if (!this.skipChecking) {
+        alert('Completed.')
+      }
       this.$store.dispatch('task/presentationselects', null);
       this.$router.push({ name: 'Home' })
+    },
+    rememberMeSkipChecking: function (e) {
+      this.skipChecking = e.target.checked; 
+      window.localStorage.setItem('multipleTaggingSkipChecking', e.target.checked);
     }
+  },
+  beforeMount () {
+    let status = window.localStorage.getItem('multipleTaggingSkipChecking');
+    if (status == null) status = false;
+    if (status == 'false') {
+      status = false;
+    } else {
+      status = true;
+    }
+    this.skipChecking = status;
   }
 }
 </script>
