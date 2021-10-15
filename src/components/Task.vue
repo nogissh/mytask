@@ -12,7 +12,7 @@
       </div>
       <div class="flex-tag">
         <span style="height: 100%; vertical-align: middle;" @click.stop="() => {}">
-          <span v-for="(tasktag, index) in task.tags" :key="index" class="tag" style="margin-right: 8px;">{{ tasktag.name.slice(0, 6) }}</span>
+          <span v-for="(tasktag, index) in task.tags" :key="index" class="tag" :title="tasktag.name" style="margin-right: 8px;">{{ tasktag.name.slice(0, 6) }}</span>
         </span>
       </div>
       <div class="flex-operate" style="text-align: right">

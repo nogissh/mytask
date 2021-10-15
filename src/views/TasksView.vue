@@ -7,7 +7,7 @@
             <button @click="showTopTaskForm" class="borderless" style="padding: 8px 16px;" v-if="form.task.top.visible === false">Create new task</button>
           </td>
           <td style="width: 60%; overflow: hidden;">
-            <span v-for="(tag, index) in tags" :key="index" class="tag" v-bind:class="tagfilterselected.indexOf(tag.id) == -1 ? 'tagfilter' : 'tagfilterused'" style="margin-right: 4px;" @click="mutatecondtag(tag.id)">{{ tag.name.slice(0, 3) }}</span>
+            <span v-for="(tag, index) in tags" :key="index" class="tag" :title="tag.name" v-bind:class="tagfilterselected.indexOf(tag.id) == -1 ? 'tagfilter' : 'tagfilterused'" style="margin-right: 4px;" @click="mutatecondtag(tag.id)">{{ tag.name.slice(0, 3) }}</span>
             <span @click="mutatecondtag(null)" style="margin-left: 4px; font-size: 12px; cursor: pointer;" v-if="tagfilterselected.length > 0">Clear</span>
           </td>
           <td style="width: 25%; text-align: right">
