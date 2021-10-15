@@ -4,7 +4,7 @@
       <table style="width: 100%;">
         <tr>
           <td style="width: 15%;">
-            <button @click="showTopTaskForm" class="borderless" style="padding: 8px 16px;" v-if="form.task.top.visible === false">Create new task</button>
+            <button @click="showTopTaskForm" class="borderless" style="padding: 8px 16px;" v-if="form.task.top.visible === false">Create</button>
           </td>
           <td style="width: 60%; overflow: hidden;">
             <span v-for="(tag, index) in tags" :key="index" class="tag" :title="tag.name" v-bind:class="tagfilterselected.indexOf(tag.id) == -1 ? 'tagfilter' : 'tagfilterused'" style="margin-right: 4px;" @click="mutatecondtag(tag.id)">{{ tag.name.slice(0, 3) }}</span>
@@ -43,7 +43,7 @@
       </div>
     </div>
     <div style="text-align: center; margin-top: 8px;" v-if="form.task.bottom.visible === false">
-      <button @click="showBottomTaskForm" class="wide round borderless" style="padding: 8px 16px;">Create new task</button>
+      <button @click="showBottomTaskForm" class="wide round borderless" style="padding: 8px 16px;">Create task</button>
     </div>
     
     <!-- Backlog -->
