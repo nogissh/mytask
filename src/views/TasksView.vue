@@ -105,7 +105,7 @@ export default {
     unshift: function (e)
     {
       if (e.keyCode == 229) return;
-      if (this.form.task.top.name == '') { return; }
+      if (this.form.task.top.name == '') return;
       let task = createNewTask(Date.now(), this.form.task.top.name);
       let tags = this.$store.getters['tag/list'];
       let selectedTagIds = this.$store.getters['task/presentationcondstagids'];
@@ -120,7 +120,7 @@ export default {
     push: function (e)
     {
       if (e.keyCode == 229) return;
-      if (this.form.task.bottom.name == '') { return; }
+      if (this.form.task.bottom.name == '') return;
 
       let task = createNewTask(Date.now(), this.form.task.bottom.name);
       let tags = this.$store.getters['tag/list'];
