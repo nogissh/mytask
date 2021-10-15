@@ -15,7 +15,7 @@
           <button @click="remove(index)" class="action" style="margin-left: 8px">remove</button>
         </div>
         <div class="tasklist_task">
-          <input type="text" placeholder="Task name" v-model="task.form.name" @keyup.enter="create" style="width: 480px; font-size: 16px; padding: 4px;" />
+          <input type="text" placeholder="Task name" v-model="task.form.name" @keydown.enter="create" style="width: 480px; font-size: 16px; padding: 4px;" />
           <button @click="create" class="action" style="margin-left: 8px">Add</button>
         </div>
       </div>
