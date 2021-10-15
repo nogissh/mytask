@@ -458,11 +458,31 @@ const backlog = {
   }
 }
 
+const modal = {
+  namespaced: true,
+  state: {
+    tagCreation: {
+      visible: false,
+    }
+  },
+  getters: {
+    tagCreationVisible: state => {
+      return state.tagCreation.visible;
+    }
+  },
+  mutations: {
+    tagCreationVisible: function (state, status) {
+      state.tagCreation.visible = status;
+    }
+  }
+}
+
 export default new Vuex.Store({
   modules: {
     task,
     tag,
     archivetask,
     backlog,
+    modal,
   }
 });

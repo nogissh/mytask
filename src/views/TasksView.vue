@@ -3,11 +3,12 @@
     <div style="margin-top: 32px;">
       <table style="width: 100%;">
         <tr>
-          <td style="width: 15%;">
+          <td style="width: 10%;">
             <button @click="showTopTaskForm" class="borderless" style="padding: 8px 16px;" v-if="form.task.top.visible === false">Create</button>
           </td>
-          <td style="width: 60%; overflow: hidden;">
+          <td style="width: 65%; overflow: hidden;">
             <span v-for="(tag, index) in tags" :key="index" class="tag" :title="tag.name" v-bind:class="tagfilterselected.indexOf(tag.id) == -1 ? 'tagfilter' : 'tagfilterused'" style="margin-right: 4px;" @click="mutatecondtag(tag.id)">{{ tag.name.slice(0, 3) }}</span>
+            <span @click="showTagCreationModal" style="margin-left: 4px" v-if="tagfilterselected.length == 0">+</span>
             <span @click="mutatecondtag(null)" style="margin-left: 4px; font-size: 12px; cursor: pointer;" v-if="tagfilterselected.length > 0">Clear</span>
           </td>
           <td style="width: 25%; text-align: right">
@@ -54,6 +55,9 @@
 
     <!-- Floating -->
     <floating-bottom-menu v-if="presentationselects.length > 0" />
+
+    <!-- Modal -->
+    <tag-creation-modal v-if="tagCreationModalVisible" />
   </div>
 </template>
 
@@ -65,6 +69,7 @@ import PresentationTaskList from '@/components/TaskList/Presentation.vue';
 import MasterTaskList from '@/components/TaskList/Master.vue';
 import FloatingBottomMenu from '@/components/FloatingArea/BottomMenu.vue';
 import BacklogContainer from '@/components/BacklogContainer.vue';
+import TagCreationModal from '@/components/Modal/TagCreation.vue';
 
 export default {
   name: 'TasksView',
@@ -73,6 +78,7 @@ export default {
     PresentationTaskList,
     FloatingBottomMenu,
     BacklogContainer,
+    TagCreationModal,
   },
   data () {
     return {
@@ -100,6 +106,11 @@ export default {
     presentationselects: {
       get () {
         return this.$store.getters['task/presentationselects'];
+      }
+    },
+    tagCreationModalVisible: {
+      get () {
+        return this.$store.getters['modal/tagCreationVisible'];
       }
     }
   },
@@ -169,6 +180,9 @@ export default {
     },
     routeToMultipleTagging: function () {
       this.$router.push({ name: 'MultipleTagging' });
+    },
+    showTagCreationModal: function () {
+      this.$store.commit('modal/tagCreationVisible', true);
     }
   },
 }
