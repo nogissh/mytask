@@ -2,7 +2,7 @@
   <div class="settings">
     <h1>Settings</h1>
 
-    <div>
+    <div v-if="false">
       <h2>Notification</h2>
       <div class="cleararea">
         <div class="cleararea__flex-parent">
