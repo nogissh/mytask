@@ -53,6 +53,9 @@
     </table>
     <div style="text-align: center;">
       <button class="action" style="background-color: #87cefa;" @click="update">Update</button>
+      <div style="margin-top: 8px">
+        <router-link :to="{ name: 'Home' }">Back to home</router-link>
+      </div>
     </div>
   </div>
 </template>
@@ -70,7 +73,7 @@ export default {
   methods: {
     update: function () {
       this.$store.dispatch('task/overwritetask', this.task);
-      alert('Success!')
+      this.$router.push({ name: 'Home' });
     }
   },
   beforeMount () {
