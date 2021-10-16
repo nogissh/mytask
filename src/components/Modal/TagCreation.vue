@@ -8,7 +8,7 @@
           <button class="action primary" style="margin-left: 8px" @click="submit">Add</button>
         </div>
         <div style="text-align: center; margin-top: 16px">
-          <span style="font-size: 13px" @click="closeModal">Close</span>
+          <span id="tag-creation-modal__close-button" style="font-size: 13px" @click="closeModal">Close</span>
         </div>
       </div>
     </div>
@@ -69,5 +69,9 @@ export default {
   background-color: white;
   box-shadow: 0 6px 3px 1px rgba(196, 196, 196, 0.8);
   border-radius: 0;
+}
+
+#tag-creation-modal__close-button:hover {
+  cursor: pointer;
 }
 </style>
