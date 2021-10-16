@@ -27,7 +27,7 @@
     </div>
     <div v-if="form.task.top.visible">
       <div class="tasklist_task">
-        <input type="text" placeholder="Enter your new task..." style="width: 50%; font-size: 16px; padding: 4px;" v-model="form.task.top.name" @keydown.enter="unshift" id="taskinputform__top" />
+        <input type="text" placeholder="Enter your new task..." style="width: 50%; font-size: 16px; padding: 4px;" v-model="form.task.top.name" @keydown.enter="unshift" @keydown.esc="hideTopTaskForm" id="taskinputform__top" />
         <button class="action" style="background-color: lightskyblue; margin-left: 8px;" @click="unshift">Add</button>
         <button class="action" style="margin-left: 8px;" @click="hideTopTaskForm">Cancel</button>
       </div>
