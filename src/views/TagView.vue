@@ -40,7 +40,7 @@ export default {
       if (e.keyCode == 229) return;
       if (this.tag.name == '') return;
       this.$store.dispatch('tag/overwritetag', this.tag);
-      this.$router.push({ name: 'Tags' });
+      this.$router.push({ name: 'Settings' });
     }
   },
   beforeMount () {
