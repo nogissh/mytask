@@ -30,24 +30,58 @@
       </div>
     </div>  
 
-    <h2>Data</h2>
-    <ul>
-      <li>
-        <router-link :to="{ name: 'ArchiveTasksView' }">Archive tasks</router-link>
-      </li>
-    </ul>
     <div>
-      <h3>Backup</h3>
+      <h2>Data</h2>
+      <ul>
+        <li>
+          <router-link :to="{ name: 'ArchiveTasksView' }">Archive tasks</router-link>
+        </li>
+      </ul>
+      <div>
+        <h3>Backup</h3>
+        <div class="cleararea">
+          <div class="cleararea__flex-parent">
+            <div class="cleararea__flex-left">
+              <p>
+                <span class="inline__vertical-middle">Download backup data</span>
+              </p>
+            </div>
+            <div class="cleararea__flex-right" style="text-align: right">
+              <span class="inline__vertical-middle">
+                <button class="action" @click="exportdata">Export</button>
+              </span>
+            </div>
+          </div>
+        </div>
+        <div class="cleararea">
+          <div class="cleararea__flex-parent">
+            <div class="cleararea__flex-left">
+              <p>
+                <span class="inline__vertical-middle">Restoration from backup data</span>
+              </p>
+            </div>
+            <div class="cleararea__flex-right" style="text-align: right">
+              <span class="inline__vertical-middle">
+                <label class="btn action color-default" for="backup-file-uploader" style="font-size: 13px; font-weight: 400">
+                  <input type="file" style="display: none" id="backup-file-uploader" @change="importdata">Import
+                </label>
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <h3>Clear</h3>
       <div class="cleararea">
         <div class="cleararea__flex-parent">
           <div class="cleararea__flex-left">
             <p>
-              <span class="inline__vertical-middle">Download backup data</span>
+              <span class="inline__vertical-middle">Clear task data</span>
             </p>
           </div>
           <div class="cleararea__flex-right" style="text-align: right">
             <span class="inline__vertical-middle">
-              <button class="action" @click="exportdata">Export</button>
+              <button class="action" @click="clearTaskData">Execute</button>
             </span>
           </div>
         </div>
@@ -56,48 +90,36 @@
         <div class="cleararea__flex-parent">
           <div class="cleararea__flex-left">
             <p>
-              <span class="inline__vertical-middle">Restoration from backup data</span>
+              <span class="inline__vertical-middle">Clear all data</span>
             </p>
           </div>
           <div class="cleararea__flex-right" style="text-align: right">
             <span class="inline__vertical-middle">
-              <label class="btn action color-default" for="backup-file-uploader" style="font-size: 13px; font-weight: 400">
-                <input type="file" style="display: none" id="backup-file-uploader" @change="importdata">Import
-              </label>
+              <button class="action" @click="clearAllData">Execute</button>
             </span>
           </div>
         </div>
       </div>
     </div>
 
-    <h3>Clear</h3>
-    <div class="cleararea">
-      <div class="cleararea__flex-parent">
-        <div class="cleararea__flex-left">
-          <p>
-            <span class="inline__vertical-middle">Clear task data</span>
-          </p>
-        </div>
-        <div class="cleararea__flex-right" style="text-align: right">
-          <span class="inline__vertical-middle">
-            <button class="action" @click="clearTaskData">Execute</button>
-          </span>
-        </div>
-      </div>
-    </div>
-    <div class="cleararea">
-      <div class="cleararea__flex-parent">
-        <div class="cleararea__flex-left">
-          <p>
-            <span class="inline__vertical-middle">Clear all data</span>
-          </p>
-        </div>
-        <div class="cleararea__flex-right" style="text-align: right">
-          <span class="inline__vertical-middle">
-            <button class="action" @click="clearAllData">Execute</button>
-          </span>
-        </div>
-      </div>
+    <hr style="width: 80%; margin: 64px auto; border: 0.5px dashed lightgray" />
+
+    <div>
+      <h2>Contact</h2>
+      <table style="width: 60%">
+        <tr>
+          <th>Twitter</th>
+          <td>
+            <a href="https://twitter.com/nogissh" target="_blank">@nogissh</a>
+          </td>
+        </tr>
+        <tr>
+          <th>Bug report</th>
+          <td>
+            Twitter or <a href="https://github.com/nogissh/mytask/issues" target="_blank">GitHub Issues</a>
+          </td>
+        </tr>
+      </table>
     </div>
   </div>
 </template>
