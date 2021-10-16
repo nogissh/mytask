@@ -8,7 +8,7 @@
           </td>
           <td style="width: 65%; overflow: hidden;">
             <span v-for="(tag, index) in tags" :key="index" class="tag" :title="tag.name" v-bind:class="tagfilterselected.indexOf(tag.id) == -1 ? 'tagfilter' : 'tagfilterused'" style="margin-right: 4px;" @click="mutatecondtag(tag.id)">{{ tag.name.slice(0, 3) }}</span>
-            <span @click="showTagCreationModal" style="margin-left: 4px" v-if="tagfilterselected.length == 0">+</span>
+            <tag-filter-create-button style="margin-left: 4px" v-if="tagfilterselected.length == 0">+</tag-filter-create-button>
             <span @click="mutatecondtag(null)" style="margin-left: 4px; font-size: 12px; cursor: pointer;" v-if="tagfilterselected.length > 0">Clear</span>
           </td>
           <td style="width: 25%; text-align: right">
@@ -70,6 +70,7 @@ import MasterTaskList from '@/components/TaskList/Master.vue';
 import FloatingBottomMenu from '@/components/FloatingArea/BottomMenu.vue';
 import BacklogContainer from '@/components/BacklogContainer.vue';
 import TagCreationModal from '@/components/Modal/TagCreation.vue';
+import TagFilterCreateButton from '@/components/TagFilter/CreateButton.vue';
 
 export default {
   name: 'TasksView',
@@ -79,6 +80,7 @@ export default {
     FloatingBottomMenu,
     BacklogContainer,
     TagCreationModal,
+    TagFilterCreateButton,
   },
   data () {
     return {
@@ -180,9 +182,6 @@ export default {
     },
     routeToMultipleTagging: function () {
       this.$router.push({ name: 'MultipleTagging' });
-    },
-    showTagCreationModal: function () {
-      this.$store.commit('modal/tagCreationVisible', true);
     }
   },
 }
