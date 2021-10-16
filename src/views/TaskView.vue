@@ -6,7 +6,7 @@
           Task
         </th>
         <td>
-          <input type="text" v-model="task.name" />
+          <input type="text" v-model="task.name" @keydown.enter="update" />
         </td>
       </tr>
       <tr>
@@ -71,7 +71,9 @@ export default {
     }
   },
   methods: {
-    update: function () {
+    update: function (e) {
+      if (e.keyCode == 229) return;
+      if (this.task.name == '') return;
       this.$store.dispatch('task/overwritetask', this.task);
       this.$router.push({ name: 'Home' });
     }
