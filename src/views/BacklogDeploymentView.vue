@@ -79,8 +79,6 @@ export default {
         this.$store.dispatch('task/persistlocalstrage');
       }
 
-      alert('Success!!');
-
       this.$store.dispatch('backlog/delete', this.$route.params.id);
       this.$router.push({ name: 'Home' })
     },
