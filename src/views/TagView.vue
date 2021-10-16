@@ -6,7 +6,7 @@
           Tag
         </th>
         <td>
-          <input type="text" v-model="tag.name" />
+          <input type="text" v-model="tag.name" @keydown.enter="update" />
         </td>
       </tr>
       <tr>
@@ -20,6 +20,7 @@
     </table>
     <div style="text-align: center;">
       <button class="action" style="background-color: #87cefa;" @click="update">Update</button>
+      <p style="font-size: 10px; margin-top: 8px">Tags that are already tagged will not be renamed.</p>
     </div>
   </div>
 </template>
@@ -35,10 +36,11 @@ export default {
     }
   },
   methods: {
-    update: function () {
-      if (! confirm('Tags that are already tagged will not be renamed.')) return;
+    update: function (e) {
+      if (e.keyCode == 229) return;
+      if (this.tag.name == '') return;
       this.$store.dispatch('tag/overwritetag', this.tag);
-      alert('Success!')
+      this.$router.push({ name: 'Tags' });
     }
   },
   beforeMount () {
