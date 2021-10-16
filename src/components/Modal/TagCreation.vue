@@ -1,6 +1,6 @@
 <template>
-  <div id="tag-creation-modal_background" @click="backgroundClickAction">
-    <div id="tag-creation-modal_body">
+  <div id="tag-creation-modal__background" @click="backgroundClickAction">
+    <div id="tag-creation-modal__body">
       <div style="padding: 4px 32px;" @click.stop>
         <h2>Create tag</h2>
         <div>
@@ -48,7 +48,7 @@ export default {
 </script>
 
 <style>
-#tag-creation-modal_background {
+#tag-creation-modal__background {
   z-index: 1000;
   position: fixed;
   width: 100%;
@@ -58,7 +58,7 @@ export default {
   background-color: rgba(100, 100, 100, 0.5);
 }
 
-#tag-creation-modal_body {
+#tag-creation-modal__body {
   z-index: 1001;
   position: fixed;
   width: 640px;
