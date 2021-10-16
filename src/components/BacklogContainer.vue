@@ -11,7 +11,7 @@
     </table>
     <div v-if="form.task.top.visible">
       <div class="backlog__task">
-        <input type="text" placeholder="Enter your new task..." style="width: 50%; font-size: 16px; padding: 4px;" v-model="form.task.top.name" @keydown.enter="unshift" />
+        <input type="text" placeholder="Enter your new task..." style="width: 50%; font-size: 16px; padding: 4px;" v-model="form.task.top.name" @keydown.enter="unshift" @keydown.esc="hideTopTaskForm" id="backloginputform__top" />
         <button class="action" style="background-color: lightskyblue; margin-left: 8px;" @click="unshift">Add</button>
         <button class="action" style="margin-left: 8px;" @click="hideTopTaskForm">Cancel</button>
       </div>
@@ -35,7 +35,7 @@
     </div>
     <div v-if="form.task.bottom.visible">
       <div class="backlog__task">
-        <input type="text" placeholder="Enter your new task..." style="width: 50%; font-size: 16px; padding: 4px;" id="bottominputform" v-model="form.task.bottom.name" @keydown.enter="push" @keydown.esc="hideBottomTaskForm" />
+        <input type="text" placeholder="Enter your new task..." style="width: 50%; font-size: 16px; padding: 4px;" v-model="form.task.bottom.name" @keydown.enter="push" @keydown.esc="hideBottomTaskForm" id="backloginputform__bottom" />
         <button class="action" style="background-color: lightskyblue; margin-left: 8px;" @click="push">Add</button>
         <button class="action" style="margin-left: 8px;" @click="hideBottomTaskForm">Cancel</button>
       </div>
@@ -83,12 +83,18 @@ export default {
   methods: {
     showTopTaskForm: function () {
       this.form.task.top.visible = true;
+      setTimeout(function () {
+        document.getElementById('backloginputform__top').focus();
+      }, 30);
     },
     hideTopTaskForm: function () {
       this.form.task.top.visible = false;
     },
     showBottomTaskForm: function () {
       this.form.task.bottom.visible = true;
+      setTimeout(function () {
+        document.getElementById('backloginputform__bottom').focus();
+      }, 30);
     },
     hideBottomTaskForm: function () {
       this.form.task.bottom.visible = false;
