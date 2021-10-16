@@ -1,6 +1,6 @@
 <template>
   <div class="home">
-    <div style="margin-top: 32px;">
+    <div>
       <table style="width: 100%;">
         <tr>
           <td style="width: 10%;">

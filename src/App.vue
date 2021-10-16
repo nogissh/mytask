@@ -1,11 +1,25 @@
 <template>
   <div id="app">
     <header id="nav">
-      <router-link to="/">Task</router-link> |
-      <router-link to="/settings">Setting</router-link>
+      <div id="nav__inside">
+        <table style="width: 100%">
+          <tr>
+            <td>
+              <router-link :to="{ name: 'Home' }" style="text-decoration: none; color: black">
+                <h1 style="font-size: 16px; margin: 0">mytask</h1>
+              </router-link>
+            </td>
+            <td style="text-align: right">
+              <router-link :to="{ name: 'Settings' }" style="text-decoration: none; color: black">Setting</router-link>
+            </td>
+          </tr>
+        </table>
+      </div>
     </header>
-    <router-view/>
-    <floating-side-menu />
+    <div id="body">
+      <router-view/>
+      <floating-side-menu />
+    </div>
   </div>
 </template>
 
@@ -29,6 +43,12 @@ export default {
 <style>
 * {
   box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  background-color: rgb(250, 250, 250);
+  overflow-y: scroll;
 }
 
 p {
@@ -133,16 +153,26 @@ label.color-default {
   background-color: rgb(239, 239, 239);
 }
 
-#app {
+#body {
   width: 960px;
   margin: 0 auto;
+  padding: 16px;
+  margin-top: 32px;
   margin-bottom: 256px;
+  background-color: white;
 }
 
 #nav {
+  width: 100%;
+  height: 64px;
   padding: 16px;
-  background-color: rgb(240, 240, 240);
-  text-align: center;
+  background-color: white;
+  border-bottom: 1px solid rgb(225, 225, 225);
+}
+
+#nav__inside {
+  width: 960px;
+  margin: 0 auto;
 }
 
 .inline__vertical-middle {
