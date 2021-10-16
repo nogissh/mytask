@@ -1,6 +1,6 @@
 <template>
   <div id="floating-side-menu" style="text-align: center">
-    <button class="borderless floating-side-menu__download" @click="exportdata">Export</button>
+    <button class="borderless floating-side-menu__button" @click="exportdata">Export</button>
   </div>
 </template>
 
@@ -34,10 +34,13 @@ export default {
   bottom: 32px;
 }
 
-button.floating-side-menu__download {
+button.floating-side-menu__button {
+  width: 80px;
+  margin-top: 8px;
   padding: 16px;
   background-color: lightgray;
 }
+
 button.floating-side-menu__download:hover {
   background-color: gray;
   color: white;
