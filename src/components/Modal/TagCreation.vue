@@ -4,7 +4,7 @@
       <div style="padding: 4px 32px;" @click.stop>
         <h2>Create tag</h2>
         <div>
-          <input type="text" placeholder="Enter tag name" v-model="name" style="width: 320px; padding: 4px; font-size: 16px" @keydown.esc="closeModal" id="tag-creation-modal__inputform" />
+          <input type="text" placeholder="Enter tag name" v-model="name" style="width: 320px; padding: 4px; font-size: 16px" @keydown.enter="submit" @keydown.esc="closeModal" id="tag-creation-modal__inputform" />
           <button class="action primary" style="margin-left: 8px" @click="submit">Add</button>
         </div>
         <div style="text-align: center; margin-top: 16px">
@@ -36,7 +36,9 @@ export default {
     backgroundClickAction: function () {
       this.closeModal();
     },
-    submit: function () {
+    submit: function (e) {
+      if (e.keyCode == 229) return;
+      if (this.name == '') return;
       this.$store.dispatch('tag/add', createNewTag(Date.now(), this.name));
       this.$store.commit('modal/tagCreationVisible', false);
     },
