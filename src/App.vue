@@ -10,7 +10,8 @@
               </router-link>
             </td>
             <td style="text-align: right">
-              <router-link :to="{ name: 'Settings' }" style="text-decoration: none; color: black">Setting</router-link>
+              <router-link :to="{ name: 'Home' }" style="text-decoration: none; color: black">Home</router-link>
+              <router-link :to="{ name: 'Settings' }" style="text-decoration: none; color: black; margin-left: 16px">Setting</router-link>
             </td>
           </tr>
         </table>
