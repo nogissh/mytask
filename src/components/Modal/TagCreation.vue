@@ -4,7 +4,7 @@
       <div style="padding: 4px 32px;" @click.stop>
         <h2>Create tag</h2>
         <div>
-          <input type="text" placeholder="Enter tag name" v-model="name" style="width: 320px; padding: 4px; font-size: 16px" />
+          <input type="text" placeholder="Enter tag name" v-model="name" style="width: 320px; padding: 4px; font-size: 16px" @keydown.esc="closeModal" id="tag-creation-modal__inputform" />
           <button class="action primary" style="margin-left: 8px" @click="submit">Add</button>
         </div>
         <div style="text-align: center; margin-top: 16px">
@@ -43,6 +43,9 @@ export default {
     closeModal: function () {
       this.$store.commit('modal/tagCreationVisible', false);
     }
+  },
+  mounted () {
+    document.getElementById('tag-creation-modal__inputform').focus();
   }
 }
 </script>
