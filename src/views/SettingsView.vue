@@ -2,6 +2,13 @@
   <div class="settings">
     <h1>Settings</h1>
 
+    <div>
+      <h2>Tag</h2>
+      <tag-container />
+    </div>
+
+    <hr style="width: 80%; margin: 64px auto; border: 0.5px dashed lightgray" />
+
     <div v-if="false">
       <h2>Notification</h2>
       <div class="cleararea">
@@ -96,8 +103,13 @@
 </template>
 
 <script>
+import TagContainer from '@/components/TagContainer.vue';
+
 export default {
   name: 'SettingsView',
+  components: {
+    TagContainer,
+  },
   data () {
     return {
       notificationPermission: window.Notification.permission,

@@ -2,7 +2,6 @@
   <div id="app">
     <header id="nav">
       <router-link to="/">Task</router-link> |
-      <router-link to="/tags">Tag</router-link> |
       <router-link to="/settings">Setting</router-link>
     </header>
     <router-view/>
