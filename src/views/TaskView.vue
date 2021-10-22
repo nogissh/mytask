@@ -17,7 +17,7 @@
           <textarea v-model="task.description"></textarea>
         </td>
       </tr>
-      <tr v-if="false">
+      <tr>
         <th>
           Reference
         </th>
