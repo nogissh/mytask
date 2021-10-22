@@ -8,6 +8,9 @@
       <div class="flex-name">
         <span style="height: 100%; vertical-align: middle;" v-bind:style="task.done ? { 'text-decoration': 'line-through' } : {}" @click.stop="() => {}">
           <router-link :to="`/tasks/${ task.id }`" style="text-decoration: none" v-bind:style="task.done ? { 'color': '#999' } : { 'color': '#000' }">{{ task.name }}</router-link>
+          <a :href="task.reference" target="_blank" v-if="task.reference != null && task.reference != undefined && task.reference != ''">
+            <img src="https://icongr.am/clarity/link.svg?size=16&color=000000" style="vertical-align: middle; margin-left: 8px" />
+          </a>
         </span>
       </div>
       <div class="flex-tag">
