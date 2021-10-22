@@ -17,6 +17,14 @@
           <textarea v-model="task.description"></textarea>
         </td>
       </tr>
+      <tr v-if="false">
+        <th>
+          Reference
+        </th>
+        <td>
+          <input type="text" v-model="task.reference" placeholder="URL" @keydown.enter="update" />
+        </td>
+      </tr>
       <tr>
         <th>
           Tag
