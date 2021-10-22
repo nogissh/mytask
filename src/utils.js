@@ -12,6 +12,7 @@ function createNewTask (id, name) {
     tags: [],
     name: name,
     description: null,
+    reference: null,
     done: false,
     archive: false,
     dueDate: null,
