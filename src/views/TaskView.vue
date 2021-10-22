@@ -34,7 +34,7 @@
           <input type="checkbox" v-model="task.done">
         </td>
       </tr>
-      <tr>
+      <tr v-if="false">
         <th>
           Due date
         </th>
@@ -42,7 +42,7 @@
           <input type="datetime-local" v-model="task.dueDate" />
         </td>
       </tr>
-      <tr>
+      <tr v-if="false">
         <th>
           Create date
         </th>
