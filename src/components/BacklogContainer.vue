@@ -26,6 +26,7 @@
               </span>
             </div>
             <div class="backlog__flex-operate" style="text-align: right">
+              <button class="action" style="margin-right: 8px" @click="toActive(task)">Active</button>
               <button class="action" style="margin-right: 8px" @click="jumpToBacklogDeployment(index)">Deploy</button>
               <button @click.stop="del(task.id)" class="action delete">Delete</button>
             </div>
@@ -48,6 +49,7 @@
 
 <script>
 import draggable from 'vuedraggable'
+import { createNewTask } from '../utils.js';
 
 export default {
   name: 'BacklogContainer',
@@ -114,6 +116,10 @@ export default {
       this.$store.dispatch('backlog/push', { id: Date.now(), name: this.form.task.bottom.name });
       this.form.task.bottom.name = '';
     },
+    toActive: function (task) {
+      this.$store.dispatch('task/push', createNewTask(Date.now(), task.name));
+      this.$store.dispatch('backlog/delete', task.id);
+    },
     del: function (id) {
       if (! confirm('Deleted task are never restore. [y/N]')) {
         return;
@@ -141,9 +147,9 @@ export default {
   justify-content: space-between;
 }
 .backlog__flex-name {
-  flex-basis: 80%;
+  flex-basis: 70%;
 }
 .backlog__flex-operate {
-  flex-basis: 20%;
+  flex-basis: 30%;
 }
 </style>
