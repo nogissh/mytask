@@ -477,6 +477,51 @@ const modal = {
   }
 }
 
+const featureEnabled = {
+  namespaced: true,
+  state: {
+    backlog: true
+  },
+  getters: {
+    backlog: function (state) {
+      return state.backlog;
+    }
+  },
+  mutations: {
+    backlog: function (state, bool) {
+      state.backlog = bool;
+    }
+  },
+  actions: {
+    reset: ({ commit, dispatch }) => {
+      commit('backlog', true);
+      dispatch('persist');
+    },
+    read: ({ commit }) => {
+      var data;
+      try {
+        data = JSON.parse(window.localStorage.getItem('featureEnabled'));
+      } catch (e) {
+        data = {}
+      }
+
+      try {
+        if (typeof(data.backlog) == 'boolean')
+          commit('backlog', data.backlog);
+      } catch (e) {
+        commit('backlog', true);
+      }
+    },
+    persist ({ state }) {
+      window.localStorage.setItem('featureEnabled', JSON.stringify(state));
+    },
+    backlog ({ commit, dispatch }, bool) {
+      commit('backlog', bool);
+      dispatch('persist');
+    }
+  }
+}
+
 export default new Vuex.Store({
   modules: {
     task,
@@ -484,5 +529,6 @@ export default new Vuex.Store({
     archivetask,
     backlog,
     modal,
+    featureEnabled,
   }
 });

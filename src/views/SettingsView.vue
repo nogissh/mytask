@@ -7,9 +7,9 @@
       <tag-container />
     </div>
 
-    <hr style="width: 80%; margin: 64px auto; border: 0.5px dashed lightgray" />
-
     <div v-if="false">
+      <hr style="width: 80%; margin: 64px auto; border: 0.5px dashed lightgray" />
+
       <h2>Notification</h2>
       <div class="cleararea">
         <div class="cleararea__flex-parent">
@@ -28,9 +28,36 @@
           </div>
         </div>
       </div>
-    </div>  
+    </div>
 
     <div>
+      <hr style="width: 80%; margin: 64px auto; border: 0.5px dashed lightgray" />
+
+      <div>
+        <h2>Feature enabled</h2>
+
+        <table style="width: 480px; text-align: center" class="stripe-table">
+          <thead>
+            <tr>
+              <th>Name</th>
+              <th>Status</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Backlog</td>
+              <td>
+                <input type="checkbox" :checked="featureBacklogEnabled" @change="enableMutation($event, 'backlog')" />
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <div>
+      <hr style="width: 80%; margin: 64px auto; border: 0.5px dashed lightgray" />
+
       <h2>Data</h2>
       <ul>
         <li>
@@ -132,6 +159,13 @@ export default {
   components: {
     TagContainer,
   },
+  computed: {
+    featureBacklogEnabled: {
+      get () {
+        return this.$store.getters['featureEnabled/backlog'];
+      }
+    }
+  },
   data () {
     return {
       notificationPermission: window.Notification.permission,
@@ -156,6 +190,9 @@ export default {
     desktopNotificationTesting: function () {
       var n = new Notification('title', { body: 'This is the test.' });
       n.onclose = function () { alert('Desktop notification is enabled.'); }
+    },
+    enableMutation: function (e, featName) {
+      this.$store.dispatch('featureEnabled/' + featName, e.target.checked);
     },
     exportdata: function () {
       let data = {
@@ -200,8 +237,27 @@ export default {
       this.$store.dispatch('tag/clearAll');
       this.$store.dispatch('archivetask/clear');
       this.$store.dispatch('backlog/clear');
+      this.$store.dispatch('featureEnabled/reset');
       alert('All data cleared.')
     }
   }
 }
 </script>
+
+<style>
+.stripe-table {
+  border-collapse: collapse;
+}
+
+.stripe-table tr:nth-child(odd) {
+  background-color: #fff;
+}
+
+.stripe-table tr:nth-child(even) {
+  background-color: #eee;
+}
+
+.stripe-table tr td {
+  border: 0;
+}
+</style>

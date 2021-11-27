@@ -48,9 +48,11 @@
     </div>
     
     <!-- Backlog -->
-    <hr style="width: 80%; margin: 64px auto; border: 0.5px dashed lightgray" />
-    <div>
-      <backlog-container />
+    <div v-if="featureBacklogEnabled">
+      <hr style="width: 80%; margin: 64px auto; border: 0.5px dashed lightgray" />
+      <div>
+        <backlog-container />
+      </div>
     </div>
 
     <!-- Floating -->
@@ -114,7 +116,12 @@ export default {
       get () {
         return this.$store.getters['modal/tagCreationVisible'];
       }
-    }
+    },
+    featureBacklogEnabled: {
+      get () {
+        return this.$store.getters['featureEnabled/backlog'];
+      }
+    },
   },
   methods: {
     unshift: function (e)

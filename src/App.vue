@@ -33,6 +33,7 @@ export default {
     FloatingSideMenu,
   },
   beforeMount () {
+    this.$store.dispatch('featureEnabled/read');
     this.$store.dispatch('task/readlocalstorage');
     this.$store.dispatch('tag/readlocalstorage');
     this.$store.dispatch('archivetask/read');
