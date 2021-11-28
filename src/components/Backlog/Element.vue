@@ -6,7 +6,7 @@
       </span>
     </div>
     <div class="backlog__flex-operate" style="text-align: right">
-      <button class="std antisquare" style="margin-right: 8px" @click="toActive">Active</button>
+      <button class="std antisquare" style="margin-right: 8px" @click="toActive">Activate</button>
       <span class="backlogmenu">
         <button @click.stop="mutateBacklogmenuVisibility" class="std antisquare">...</button>
         <ul v-if="visibility.backlogmenu">
