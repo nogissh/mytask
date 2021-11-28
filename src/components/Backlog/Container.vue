@@ -49,10 +49,10 @@
 
 <script>
 import draggable from 'vuedraggable'
-import { createNewTask } from '../utils.js';
+import { createNewTask } from '../../utils.js';
 
 export default {
-  name: 'BacklogContainer',
+  name: 'Container',
   components: {
     draggable,
   },

@@ -70,7 +70,7 @@ import { createNewTask } from '../utils.js';
 import PresentationTaskList from '@/components/TaskList/Presentation.vue';
 import MasterTaskList from '@/components/TaskList/Master.vue';
 import FloatingBottomMenu from '@/components/FloatingArea/BottomMenu.vue';
-import BacklogContainer from '@/components/BacklogContainer.vue';
+import BacklogContainer from '@/components/Backlog/Container.vue';
 import TagCreationModal from '@/components/Modal/TagCreation.vue';
 import TagFilterCreateButton from '@/components/TagFilter/CreateButton.vue';
 
