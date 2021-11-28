@@ -102,11 +102,18 @@ span.tagfilterused:hover {
   cursor: pointer;
 }
 
+button.std {
+  padding: 8px 16px;
+  border: 0;
+}
 button.borderless {
   border: 0;
 }
 button.wide {
   width: 256px;
+}
+button.antisquare {
+  border-radius: 3px;
 }
 button.round {
   border-radius: 16px;

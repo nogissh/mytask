@@ -19,7 +19,12 @@
         </span>
       </div>
       <div class="flex-operate" style="text-align: right">
-        <button @click.stop="deltask(task.id)" class="action delete" v-if="presentationselects.length == 0">Delete</button>
+        <div class="taskmenu">
+          <button @click.stop="mutateTaskmenuVisibility" class="std antisquare">...</button>
+          <ul v-if="visibility.taskmenu">
+            <li @click.stop="deltask(task.id)">Delete</li>
+          </ul>
+        </div>
       </div>
     </div>
   </div>
@@ -29,6 +34,13 @@
 export default {
   name: 'Task',
   props: ['task'],
+  data () {
+    return {
+      visibility: {
+        taskmenu: false,
+      }
+    }
+  },
   computed: {
     presentationselects: {
       get () {
@@ -71,6 +83,9 @@ export default {
       for (let i = si; i <= (maxpoint - minpoint - ei); i++) {
         this.$store.dispatch('task/presentationselects', tasks[minpoint + i].id);
       }
+    },
+    mutateTaskmenuVisibility: function () {
+      this.visibility.taskmenu = !this.visibility.taskmenu;
     }
   },
 }
@@ -81,5 +96,29 @@ export default {
   width: 20px;
   height: 20px;
   margin-top: 5px;
+}
+
+.taskmenu button:hover {
+  background-color: gray;
+}
+.taskmenu ul {
+  list-style: none;
+  position: absolute;
+  text-align: center;
+  font-size: 13px;
+  width: 100px;
+  margin: 0;
+  padding: 8px 0;
+  background-color: white;
+  box-shadow: rgb(9 30 66 / 25%) 0px 4px 8px -2px, rgb(9 30 66 / 31%) 0px 0px 1px;
+  border-radius: 3px;
+  transform: translate3d(40px, 16px, 0px);
+}
+.taskmenu ul li {
+  cursor: pointer;
+  padding: 4px 0;
+}
+.taskmenu ul li:hover {
+  background-color: #eee;
 }
 </style>
