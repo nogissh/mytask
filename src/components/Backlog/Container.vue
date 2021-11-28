@@ -19,18 +19,7 @@
     <div>
       <draggable v-model="list">
         <div v-for="(task, index) in list" :key="index" class="backlog__task">
-          <div class="backlog__flexparent">
-            <div class="backlog__flex-name" style="height: 100%; vertical-align: middle;">
-              <span style="height: 100%; vertical-align: middle;"  @click.stop="() => {}">
-                {{ task.name }}
-              </span>
-            </div>
-            <div class="backlog__flex-operate" style="text-align: right">
-              <button class="action" style="margin-right: 8px" @click="toActive(task)">Active</button>
-              <button class="action" style="margin-right: 8px" @click="jumpToBacklogDeployment(index)">Deploy</button>
-              <button @click.stop="del(task.id)" class="action delete">Delete</button>
-            </div>
-          </div>
+          <backlog-element :task="task" :index="index" />
         </div>
       </draggable>
     </div>
@@ -49,12 +38,13 @@
 
 <script>
 import draggable from 'vuedraggable'
-import { createNewTask } from '../../utils.js';
+import BacklogElement from './Element.vue';
 
 export default {
   name: 'Container',
   components: {
     draggable,
+    BacklogElement,
   },
   data () {
     return {
@@ -116,19 +106,6 @@ export default {
       this.$store.dispatch('backlog/push', { id: Date.now(), name: this.form.task.bottom.name });
       this.form.task.bottom.name = '';
     },
-    toActive: function (task) {
-      this.$store.dispatch('task/push', createNewTask(Date.now(), task.name));
-      this.$store.dispatch('backlog/delete', task.id);
-    },
-    del: function (id) {
-      if (! confirm('Deleted task are never restore. [y/N]')) {
-        return;
-      }
-      this.$store.dispatch('backlog/delete', id);
-    },
-    jumpToBacklogDeployment: function (idx) {
-      this.$router.push({ name: 'BacklogDeployment', params: { id: this.list[idx].id }})
-    }
   }
 }
 </script>
@@ -139,17 +116,5 @@ export default {
   padding: 8px;
   border: 1px solid lightgray;
   border-radius: 4px;
-}
-
-.backlog__flexparent {
-  display: flex;
-  flex-wrap: nowrap;
-  justify-content: space-between;
-}
-.backlog__flex-name {
-  flex-basis: 70%;
-}
-.backlog__flex-operate {
-  flex-basis: 30%;
 }
 </style>
