@@ -1,7 +1,7 @@
 <template>
   <div class="backlog__flexparent">
     <div class="backlog__flex-name" style="height: 100%; vertical-align: middle;">
-      <span style="height: 100%; vertical-align: middle;"  @click.stop="() => {}">
+      <span style="height: 100%; vertical-align: middle;"  @click.stop="showDetail">
         {{ task.name }}
       </span>
     </div>
@@ -32,6 +32,10 @@ export default {
     }
   },
   methods: {
+    showDetail: function () {
+      this.$store.dispatch('backlog/select', this.task.id);
+      this.$store.commit('modal/backlogDetailVisible', true);
+    },
     toActive: function () {
       this.$store.dispatch('task/push', createNewTask(Date.now(), this.task.name));
       this.$store.dispatch('backlog/delete', this.task.id);

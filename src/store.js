@@ -400,15 +400,27 @@ const archivetask = {
 const backlog = {
   namespaced: true,
   state: {
-    list: []
+    list: [],
+    select: null,
   },
   getters: {
     list: function (state) {
       return state.list;
-    }
+    },
+    get: function (state) {
+      return state.list[state.select];
+    },
+    select: function (state) {
+      return state.select;
+    },
   },
   mutations: {
     list: function (state, list) {
+      state.list = list;
+    },
+    update: function (state, task) {
+      let list = JSON.parse(JSON.stringify(state.list));
+      list[state.select] = task;
       state.list = list;
     },
     push: function (state, task) {
@@ -423,6 +435,9 @@ const backlog = {
       }
       state.list = state.list.filter(task => ids.indexOf(task.id) == -1);
     },
+    select: function (state, idx) {
+      state.select = idx;
+    }
   },
   actions: {
     persist ({ getters }) {
@@ -437,6 +452,10 @@ const backlog = {
     },
     overwrite ({ commit, dispatch }, list) {
       commit('list', list);
+      dispatch('persist');
+    },
+    update ({ commit, dispatch }, task) {
+      commit('update', task);
       dispatch('persist');
     },
     clear ({ commit, dispatch }) {
@@ -455,6 +474,11 @@ const backlog = {
       commit('delete', id);
       dispatch('persist');
     },
+    select ({ commit, getters }, id) {
+      let ids = getters.list.map(backlog => backlog.id);
+      let idx = ids.indexOf(id);
+      commit('select', idx);
+    },
   }
 }
 
@@ -463,16 +487,25 @@ const modal = {
   state: {
     tagCreation: {
       visible: false,
+    },
+    backlogDetail: {
+      visible: false,
     }
   },
   getters: {
     tagCreationVisible: state => {
       return state.tagCreation.visible;
+    },
+    backlogDetailVisible: state => {
+      return state.backlogDetail.visible;
     }
   },
   mutations: {
     tagCreationVisible: function (state, status) {
       state.tagCreation.visible = status;
+    },
+    backlogDetailVisible: function (state, status) {
+      state.backlogDetail.visible = status;
     }
   }
 }
