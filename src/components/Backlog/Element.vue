@@ -1,7 +1,7 @@
 <template>
   <div class="backlog__flexparent">
     <div class="backlog__flex-name" style="height: 100%; vertical-align: middle;">
-      <span style="height: 100%; vertical-align: middle;"  @click.stop="showDetail">
+      <span style="height: 100%; vertical-align: middle; cursor: pointer"  @click.stop="showDetail">
         {{ task.name }}
       </span>
     </div>
