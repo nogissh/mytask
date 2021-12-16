@@ -14,7 +14,7 @@
           Description
         </th>
         <td>
-          <textarea v-model="task.description"></textarea>
+          <textarea v-model="task.description" style="height: 120px; padding: 4px 8px"></textarea>
         </td>
       </tr>
       <tr>
