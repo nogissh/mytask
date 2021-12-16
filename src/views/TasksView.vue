@@ -60,6 +60,7 @@
 
     <!-- Modal -->
     <tag-creation-modal v-if="tagCreationModalVisible" />
+    <task-detail-modal v-if="taskDetailModalVisible" />
     <backlog-detail-modal v-if="backlogDetailModalVisible" />
   </div>
 </template>
@@ -74,6 +75,7 @@ import FloatingBottomMenu from '@/components/FloatingArea/BottomMenu.vue';
 import BacklogContainer from '@/components/Backlog/Container.vue';
 import TagFilterCreateButton from '@/components/TagFilter/CreateButton.vue';
 import TagCreationModal from '@/components/Modal/TagCreation.vue';
+import TaskDetailModal from '@/components/Modal/TaskDetail.vue';
 import BacklogDetailModal from '@/components/Modal/BacklogDetail.vue';
 
 export default {
@@ -86,6 +88,7 @@ export default {
     TagCreationModal,
     TagFilterCreateButton,
     BacklogDetailModal,
+    TaskDetailModal,
   },
   data () {
     return {
@@ -118,6 +121,11 @@ export default {
     tagCreationModalVisible: {
       get () {
         return this.$store.getters['modal/tagCreationVisible'];
+      }
+    },
+    taskDetailModalVisible: {
+      get () {
+        return this.$store.getters['modal/taskDetailVisible'];
       }
     },
     backlogDetailModalVisible: {

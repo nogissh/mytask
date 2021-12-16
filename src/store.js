@@ -88,15 +88,6 @@ const task = {
     overwritetag: function (state, tags) {
       state.list[state.select].tags = tags;
     },
-    pushtag: function (state, tag) {
-      state.list[state.select].tags.push(tag);
-    },
-    deletetag: function (state, tagid) {
-      state.list[state.select].tags = state.list[state.select].tags.filter(tag => tag.id != tagid);
-    },
-    cleartag: function (state) {
-      state.list[state.select].tags = [];
-    },
     presentationmode: function (state, status) {
       state.presentation.mode = status;
     },
@@ -142,6 +133,11 @@ const task = {
     presentationcondsdone: function (state, status) {
       state.presentation.conds.done = status;
     },
+    update: function (state, task) {
+      let list = JSON.parse(JSON.stringify(state.list));
+      list[state.select] = task;
+      state.list = list;
+    },
   },
   actions: {
     overwrite ({ commit, dispatch }, tasks) {
@@ -177,18 +173,6 @@ const task = {
     undone ({ state, commit, dispatch }, id) {
       dispatch('select', id);
       commit('undone', state.select);
-      dispatch('presentationlist');
-    },
-    pushtag ({ commit, dispatch }, tag) {
-      commit('pushtag', tag);
-      dispatch('presentationlist');
-    },
-    deletetag ({ commit, dispatch }, tagid) {
-      commit('deletetag', tagid);
-      dispatch('presentationlist');
-    },
-    cleartag ({ commit, dispatch }) {
-      commit('cleartag');
       dispatch('presentationlist');
     },
     presentationselects ({ commit, dispatch }, taskid) {
@@ -267,6 +251,10 @@ const task = {
       commit('clearselect');
       dispatch('persistlocalstrage');
       dispatch('presentationlist');
+    },
+    update ({ commit, dispatch }, task) {
+      commit('update', task);
+      dispatch('persistlocalstrage');
     },
   }
 }
@@ -488,6 +476,9 @@ const modal = {
     tagCreation: {
       visible: false,
     },
+    taskDetail: {
+      visible: false,
+    },
     backlogDetail: {
       visible: false,
     }
@@ -496,6 +487,9 @@ const modal = {
     tagCreationVisible: state => {
       return state.tagCreation.visible;
     },
+    taskDetailVisible: state => {
+      return state.taskDetail.visible;
+    },
     backlogDetailVisible: state => {
       return state.backlogDetail.visible;
     }
@@ -503,6 +497,9 @@ const modal = {
   mutations: {
     tagCreationVisible: function (state, status) {
       state.tagCreation.visible = status;
+    },
+    taskDetailVisible: function (state, status) {
+      state.taskDetail.visible = status;
     },
     backlogDetailVisible: function (state, status) {
       state.backlogDetail.visible = status;

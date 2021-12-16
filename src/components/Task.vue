@@ -7,7 +7,7 @@
       </div>
       <div class="flex-name">
         <span style="height: 100%; vertical-align: middle;" v-bind:style="task.done ? { 'text-decoration': 'line-through' } : {}" @click.stop="() => {}">
-          <router-link :to="`/tasks/${ task.id }`" style="text-decoration: none" v-bind:style="task.done ? { 'color': '#999' } : { 'color': '#000' }">{{ task.name }}</router-link>
+          <span style="cursor: pointer" v-bind:style="task.done ? { 'color': '#999' } : { 'color': '#000' }" @click.stop="showDetail">{{ task.name }}</span>
           <span class="taskdetail" v-if="task.description != '' && task.description != null && task.description != undefined" style="margin-left: 8px">
             <span>
               <a>
@@ -59,6 +59,10 @@ export default {
     }
   },
   methods: {
+    showDetail: function () {
+      this.$store.dispatch('task/select', this.task.id);
+      this.$store.commit('modal/taskDetailVisible', true);
+    },
     donetask: function (id) {
       this.$store.dispatch('task/done', id);
     },

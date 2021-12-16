@@ -3,7 +3,6 @@ import VueRouter from 'vue-router'
 import TasksView from '../views/TasksView.vue'
 import TaskView from '../views/TaskView.vue'
 import TagView from '../views/TagView.vue'
-import TaskTagView from '../views/TaskTagView.vue'
 import SettingsView from '../views/SettingsView.vue'
 import MultipleTaggingView from '../views/MultipleTaggingView.vue'
 import BacklogDeploymentView from '../views/BacklogDeploymentView.vue';
@@ -26,11 +25,6 @@ const routes = [
     path: '/tasks/:id',
     name: 'Task',
     component: TaskView
-  },
-  {
-    path: '/tasks/:id/tag',
-    name: 'TaskTag',
-    component: TaskTagView
   },
   {
     path: '/tags/:id',
