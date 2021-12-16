@@ -8,6 +8,16 @@
       <div class="flex-name">
         <span style="height: 100%; vertical-align: middle;" v-bind:style="task.done ? { 'text-decoration': 'line-through' } : {}" @click.stop="() => {}">
           <router-link :to="`/tasks/${ task.id }`" style="text-decoration: none" v-bind:style="task.done ? { 'color': '#999' } : { 'color': '#000' }">{{ task.name }}</router-link>
+          <span class="taskdetail" v-if="task.description != '' && task.description != null && task.description != undefined" style="margin-left: 8px">
+            <span>
+              <a>
+                <img src="https://icongr.am/clarity/details.svg?size=16&color=000000" style="vertical-align: middle" />
+              </a>
+              <span>
+                <p style="white-space: pre-wrap">{{ task.description }}</p>
+              </span>
+            </span>
+          </span>
           <a :href="task.reference" target="_blank" v-if="task.reference != null && task.reference != undefined && task.reference != ''">
             <img src="https://icongr.am/clarity/link.svg?size=16&color=000000" style="vertical-align: middle; margin-left: 8px" />
           </a>
@@ -96,6 +106,24 @@ export default {
   width: 20px;
   height: 20px;
   margin-top: 5px;
+}
+
+.taskdetail span span {
+  visibility: hidden;
+  position: absolute;
+  font-size: 13px;
+  margin: 0;
+  padding: 16px;
+  background-color: white;
+  box-shadow: rgb(9 30 66 / 25%) 0px 4px 8px -2px, rgb(9 30 66 / 31%) 0px 0px 1px;
+  border-radius: 3px;
+  transform: translate3d(-50px, 30px, 0);
+}
+.taskdetail span:hover {
+  cursor: context-menu;
+}
+.taskdetail span:hover span {
+  visibility: visible;
 }
 
 .taskmenu button:hover {
