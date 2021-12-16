@@ -14,13 +14,13 @@
             <tr>
               <th>Description</th>
               <td>
-                <textarea style="height: 80px" disabled></textarea>
+                <textarea style="height: 80px" v-model="task.description"></textarea>
               </td>
             </tr>
             <tr>
               <th>URL</th>
               <td>
-                <input type="text" placeholder="URL" disabled />
+                <input type="text" placeholder="URL" v-model="task.reference" />
               </td>
             </tr>
           </table>
