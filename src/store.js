@@ -254,7 +254,7 @@ const task = {
     },
     update ({ commit, dispatch }, task) {
       commit('update', task);
-      dispatch('persistlocalstrage');
+      dispatch('presentationlist');
     },
   }
 }
