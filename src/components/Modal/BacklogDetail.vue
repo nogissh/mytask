@@ -52,7 +52,9 @@ export default {
     closeModal: function () {
       this.$store.commit('modal/backlogDetailVisible', false);
     },
-    submit: function () {
+    submit: function (e) {
+      if (e.keyCode == 229) return;
+      if (this.task.name == '') return;
       this.$store.dispatch('backlog/update', this.task);
       this.closeModal();
     }
