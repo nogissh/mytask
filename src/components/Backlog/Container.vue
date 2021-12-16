@@ -40,6 +40,8 @@
 import draggable from 'vuedraggable'
 import BacklogElement from './Element.vue';
 
+import { createNewTask } from '../../utils.js';
+
 export default {
   name: 'Container',
   components: {
@@ -95,7 +97,7 @@ export default {
     {
       if (e.keyCode == 229) return;
       if (this.form.task.top.name == '') { return; }
-      this.$store.dispatch('backlog/unshift', { id: Date.now(), name: this.form.task.top.name });
+      this.$store.dispatch('backlog/unshift', createNewTask(Date.now(), this.form.task.top.name));
       this.hideTopTaskForm();
       this.form.task.top.name = '';
     },
@@ -103,7 +105,7 @@ export default {
     {
       if (e.keyCode == 229) return;
       if (this.form.task.bottom.name == '') { return; }
-      this.$store.dispatch('backlog/push', { id: Date.now(), name: this.form.task.bottom.name });
+      this.$store.dispatch('backlog/push', createNewTask(Date.now(), this.form.task.bottom.name));
       this.form.task.bottom.name = '';
     },
   }
