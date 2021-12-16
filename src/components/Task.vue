@@ -2,8 +2,7 @@
   <div class="task tasklist_task" v-bind:class="presentationselects.indexOf(task.id) >= 0 ? 'tasklist_task_selected' : task.done ? 'tasklist_task_done' : ''" @click.exact="select(task.id)" @click.shift="test(task.id)">
     <div class="tasklist_flexparent">
       <div class="flex-state">
-        <input type="checkbox" class="task-checkbox" @click.stop="donetask(task.id)" v-if="task.done === false" />
-        <input type="checkbox" class="task-checkbox" checked @click.stop="undonetask(task.id)" v-else />
+        <input type="checkbox" class="task-checkbox" v-model="task.done" @click.stop="mutatestatus(task.id)" />
       </div>
       <div class="flex-name">
         <span style="height: 100%; vertical-align: middle;" v-bind:style="task.done ? { 'text-decoration': 'line-through' } : {}" @click.stop="() => {}">
@@ -63,11 +62,12 @@ export default {
       this.$store.dispatch('task/select', this.task.id);
       this.$store.commit('modal/taskDetailVisible', true);
     },
-    donetask: function (id) {
-      this.$store.dispatch('task/done', id);
-    },
-    undonetask: function (id) {
-      this.$store.dispatch('task/undone', id);
+    mutatestatus: function (id) {
+      if (this.task.done) {
+        this.$store.dispatch('task/undone', id);
+      } else {
+        this.$store.dispatch('task/done', id);
+      }
     },
     deltask: function (id) {
       if (! confirm('Deleted task are never restore. [y/N]')) {
