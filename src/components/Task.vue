@@ -146,6 +146,7 @@ export default {
   visibility: hidden;
   position: absolute;
   font-size: 13px;
+  max-width: 640px;
   margin: 0;
   padding: 16px;
   background-color: white;
