@@ -510,7 +510,7 @@ const modal = {
 const featureEnabled = {
   namespaced: true,
   state: {
-    backlog: true
+    backlog: false,
   },
   getters: {
     backlog: function (state) {
