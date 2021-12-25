@@ -25,7 +25,7 @@
             </tr>
             <tr>
               <th>Tag</th>
-              <td>
+              <td v-if="tags.length > 0">
                 <span
                   v-for="(tag, index) in tags"
                   :key="index"
@@ -35,6 +35,9 @@
                   style="margin-right: 8px; border: 1px solid lightgray; cursor: pointer"
                   @click="mutatetasktag(index)"
                   >{{ tag.name }}</span>
+              </td>
+              <td v-else>
+                No tag created.
               </td>
             </tr>
             <tr>
