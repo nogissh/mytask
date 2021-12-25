@@ -30,7 +30,7 @@
       <div class="task-flex-spent" style="text-align: center">
         <span style="height: 100%; vertical-align: middle; font-size: 13px" v-bind:style="task.done ? { 'color': '#999', 'text-decoration': 'line-through' } : {}" @click.stop="() => {}">
           <span v-if="spentday == 0">Today</span>
-          <span v-else-if="spentday > 0 && spentday <= 30">{{ spentday }}d ago</span>
+          <span v-else-if="spentday > 0 && spentday <= 30">{{ spentday }}d later</span>
           <span v-else-if="spentday > 30">Lazy</span>
           <span v-else></span>
         </span>
