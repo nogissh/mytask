@@ -88,7 +88,9 @@ export default {
       }
       this.tasktagids = this.task.tags.map(tag => tag.id);
     },
-    submit: function () {
+    submit: function (e) {
+      if (e.keyCode == 229) return;
+      if (this.task.name == '') return;
       this.$store.dispatch('task/update', this.task);
       this.closeModal();
     }
