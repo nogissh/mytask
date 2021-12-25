@@ -17,7 +17,7 @@ function createNewTask (id, name) {
     archive: false,
     dueDate: null,
     doneDate: null,
-    // createDate: getDateAsJST(),
+    createdat: Date.now(),
     createDate: null,
     updateDate: null,
   }
@@ -42,9 +42,19 @@ function intersection(setA, setB) {
     return _intersection
 }
 
+function daygap(a, b) {
+  if (a == null || b == null)
+    return null;
+  let da = new Date(a);
+  let db = new Date(b);
+  let days = Math.floor((da.getTime() - db.getTime()) / (1000 * 60 * 60 * 24));
+  return days;
+}
+
 export {
   createNewTask,
   createNewTag,
   toISOStringOnAsiaTokyoTimezone,
-  intersection
+  intersection,
+  daygap,
 }
