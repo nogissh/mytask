@@ -32,6 +32,7 @@
           <span v-if="spentday == 0">Today</span>
           <span v-else-if="spentday > 0 && spentday <= 30">{{ spentday }}d later</span>
           <span v-else-if="spentday > 30">Lazy</span>
+          <span v-else-if="spentday < 0">ERROR</span>
           <span v-else></span>
         </span>
       </div>
@@ -48,7 +49,7 @@
 </template>
 
 <script>
-import { daygap } from '../utils.js';
+import { datediff } from '../utils.js';
 
 export default {
   name: 'Task',
@@ -114,7 +115,7 @@ export default {
     }
   },
   beforeMount () {
-    this.spentday = daygap(Date.now(), this.task.createdat);
+    this.spentday = datediff(this.task.createdat, Date.now());
   }
 }
 </script>
