@@ -1,9 +1,20 @@
 <template>
   <div class="backlog__flexparent">
     <div class="backlog__flex-name" style="height: 100%; vertical-align: middle;">
-      <span style="height: 100%; vertical-align: middle; cursor: pointer"  @click.stop="showDetail">
-        {{ task.name }}
+      <span style="height: 100%; vertical-align: middle; cursor: pointer"  @click.stop="showDetail">{{ task.name }}</span>
+      <span class="backlogdetail" v-if="task.description != '' && task.description != null && task.description != undefined" style="margin-left: 8px">
+        <span>
+          <a>
+            <img src="https://icongr.am/clarity/details.svg?size=16&color=000000" style="vertical-align: middle" />
+          </a>
+          <span>
+            <p style="white-space: pre-wrap">{{ task.description }}</p>
+          </span>
+        </span>
       </span>
+      <a :href="task.reference" target="_blank" v-if="task.reference != null && task.reference != undefined && task.reference != ''">
+        <img src="https://icongr.am/clarity/link.svg?size=16&color=000000" style="vertical-align: middle; margin-left: 8px" />
+      </a>
     </div>
     <div class="backlog__flex-operate" style="text-align: right">
       <button class="std antisquare" style="margin-right: 8px" @click="toActive">Activate</button>
@@ -72,6 +83,25 @@ export default {
 }
 .backlog__flex-operate {
   flex-basis: 20%;
+}
+
+.backlogdetail span span {
+  visibility: hidden;
+  position: absolute;
+  font-size: 13px;
+  max-width: 640px;
+  margin: 0;
+  padding: 16px;
+  background-color: white;
+  box-shadow: rgb(9 30 66 / 25%) 0px 4px 8px -2px, rgb(9 30 66 / 31%) 0px 0px 1px;
+  border-radius: 3px;
+  transform: translate3d(-50px, 30px, 0);
+}
+.backlogdetail span:hover {
+  cursor: context-menu;
+}
+.backlogdetail span:hover span {
+  visibility: visible;
 }
 
 .backlogmenu button:hover {
