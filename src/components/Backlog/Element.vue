@@ -37,11 +37,10 @@ export default {
       this.$store.commit('modal/backlogDetailVisible', true);
     },
     toActive: function () {
-      if (this.task.done == null || this.task.done == undefined) {
-        this.$store.dispatch('task/push', createNewTask(Date.now(), this.task.name));
-      } else {
-        this.$store.dispatch('task/push', JSON.parse(JSON.stringify(this.task)));
-      }
+      var newtask = createNewTask(Date.now(), this.task.name);
+      newtask.description = this.task.description;
+      newtask.reference = this.task.reference;
+      this.$store.dispatch('task/push', JSON.parse(JSON.stringify(newtask)));
       this.$store.dispatch('backlog/delete', this.task.id);
     },
     goDeploy: function () {
