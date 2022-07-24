@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div style="background-color: white; padding: 16px">
     <div>
       <h2>Tag</h2>
       <div>

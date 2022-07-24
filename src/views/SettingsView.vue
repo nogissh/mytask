@@ -1,5 +1,5 @@
 <template>
-  <div class="settings">
+  <div class="settings" style="background-color: white; padding: 16px">
     <h1>Settings</h1>
 
     <div>

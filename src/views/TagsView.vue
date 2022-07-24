@@ -1,5 +1,5 @@
 <template>
-  <div class="tags">
+  <div class="tags" style="background-color: white; padding: 16px">
     <div>
       <tag-list />
     </div>

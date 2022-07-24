@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div style="background-color: white; padding: 16px">
     <div>
       <h2>Selected tasks</h2>
       <ul>

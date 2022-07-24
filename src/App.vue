@@ -17,7 +17,7 @@
         </table>
       </div>
     </header>
-    <div id="body">
+    <div id="main">
       <router-view/>
       <floating-side-menu />
     </div>
@@ -162,13 +162,13 @@ label.color-default {
   background-color: rgb(239, 239, 239);
 }
 
-#body {
+#main {
   width: 960px;
   margin: 0 auto;
-  padding: 16px;
+  /* padding: 16px; */
   margin-top: 32px;
   margin-bottom: 256px;
-  background-color: white;
+  /* background-color: white; */
 }
 
 #nav {

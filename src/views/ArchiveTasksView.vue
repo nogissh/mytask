@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div style="background-color: white; padding: 16px">
     <div style="margin-top: 24px">
       <router-link :to="{ name: 'Settings' }">Back to setting page</router-link>
     </div>

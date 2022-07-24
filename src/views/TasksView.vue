@@ -1,56 +1,58 @@
 <template>
   <div class="home">
-    <div>
-      <table style="width: 100%;">
-        <tr>
-          <td style="width: 10%;">
-            <button @click="showTopTaskForm" class="borderless" style="padding: 8px 16px;" v-if="form.task.top.visible === false">Create</button>
-          </td>
-          <td style="width: 65%; overflow: hidden;">
-            <span v-for="(tag, index) in tags" :key="index" class="tag" :title="tag.name" v-bind:class="tagfilterselected.indexOf(tag.id) == -1 ? 'tagfilter' : 'tagfilterused'" style="margin-right: 4px;" @click="mutatecondtag(tag.id)">{{ tag.name.slice(0, 3) }}</span>
-            <tag-filter-create-button style="margin-left: 4px" v-if="tagfilterselected.length == 0">+</tag-filter-create-button>
-            <span @click="mutatecondtag(null)" style="margin-left: 4px; font-size: 12px; cursor: pointer;" v-if="tagfilterselected.length > 0">Clear</span>
-          </td>
-          <td style="width: 25%; text-align: right">
-            <span v-if="presentationselects.length == 0">
-              <button class="borderless" style="padding: 8px 16px; margin-right: 8px;" @click="hideDoneTask" v-if="donetaskvisible">Hide done</button>
-              <button class="borderless" style="padding: 8px 16px; margin-right: 8px;" @click="showDoneTask" v-else>Show done</button>
-              <button class="borderless" style="padding: 8px 16px;" @click="archiveDoneTask">Archive done</button>
-            </span>
-            <span v-else>
-              <button class="borderless primary" style="padding: 8px 16px; margin-right: 8px;" @click="routeToMultipleTagging">Tagging</button>
-              <button class="borderless danger" style="padding: 8px 16px;" @click="deleteMultipleTask">Delete</button>
-            </span>
-          </td>
-        </tr>
-      </table>
-    </div>
-    <div v-if="form.task.top.visible">
-      <div class="tasklist_task">
-        <input type="text" placeholder="Enter your new task..." style="width: 50%; font-size: 16px; padding: 4px;" v-model="form.task.top.name" @keydown.enter="unshift" @keydown.esc="hideTopTaskForm" id="taskinputform__top" />
-        <button class="action" style="background-color: lightskyblue; margin-left: 8px;" @click="unshift">Add</button>
-        <button class="action" style="margin-left: 8px;" @click="hideTopTaskForm">Cancel</button>
+    <div style="background-color: white; padding: 16px">
+      <div>
+        <table style="width: 100%;">
+          <tr>
+            <td style="width: 10%;">
+              <button @click="showTopTaskForm" class="borderless" style="padding: 8px 16px;" v-if="form.task.top.visible === false">Create</button>
+            </td>
+            <td style="width: 65%; overflow: hidden;">
+              <span v-for="(tag, index) in tags" :key="index" class="tag" :title="tag.name" v-bind:class="tagfilterselected.indexOf(tag.id) == -1 ? 'tagfilter' : 'tagfilterused'" style="margin-right: 4px;" @click="mutatecondtag(tag.id)">{{ tag.name.slice(0, 3) }}</span>
+              <tag-filter-create-button style="margin-left: 4px" v-if="tagfilterselected.length == 0">+</tag-filter-create-button>
+              <span @click="mutatecondtag(null)" style="margin-left: 4px; font-size: 12px; cursor: pointer;" v-if="tagfilterselected.length > 0">Clear</span>
+            </td>
+            <td style="width: 25%; text-align: right">
+              <span v-if="presentationselects.length == 0">
+                <button class="borderless" style="padding: 8px 16px; margin-right: 8px;" @click="hideDoneTask" v-if="donetaskvisible">Hide done</button>
+                <button class="borderless" style="padding: 8px 16px; margin-right: 8px;" @click="showDoneTask" v-else>Show done</button>
+                <button class="borderless" style="padding: 8px 16px;" @click="archiveDoneTask">Archive done</button>
+              </span>
+              <span v-else>
+                <button class="borderless primary" style="padding: 8px 16px; margin-right: 8px;" @click="routeToMultipleTagging">Tagging</button>
+                <button class="borderless danger" style="padding: 8px 16px;" @click="deleteMultipleTask">Delete</button>
+              </span>
+            </td>
+          </tr>
+        </table>
       </div>
-    </div>
-    <div>
-      <presentation-task-list v-if="presentationmode" />
-      <master-task-list v-else />
-    </div>
-    <div v-if="form.task.bottom.visible">
-      <div class="tasklist_task">
-        <input type="text" placeholder="Enter your new task..." style="width: 50%; font-size: 16px; padding: 4px;" v-model="form.task.bottom.name" @keydown.enter="push" @keydown.esc="hideBottomTaskForm" id="taskinputform__bottom" />
-        <button class="action" style="background-color: lightskyblue; margin-left: 8px;" @click="push">Add</button>
-        <button class="action" style="margin-left: 8px;" @click="hideBottomTaskForm">Cancel</button>
+      <div v-if="form.task.top.visible">
+        <div class="tasklist_task">
+          <input type="text" placeholder="Enter your new task..." style="width: 50%; font-size: 16px; padding: 4px;" v-model="form.task.top.name" @keydown.enter="unshift" @keydown.esc="hideTopTaskForm" id="taskinputform__top" />
+          <button class="action" style="background-color: lightskyblue; margin-left: 8px;" @click="unshift">Add</button>
+          <button class="action" style="margin-left: 8px;" @click="hideTopTaskForm">Cancel</button>
+        </div>
       </div>
-    </div>
-    <div style="text-align: center; margin-top: 8px;" v-if="form.task.bottom.visible === false">
-      <button @click="showBottomTaskForm" class="wide round borderless" style="padding: 8px 16px;">Create task</button>
+      <div>
+        <presentation-task-list v-if="presentationmode" />
+        <master-task-list v-else />
+      </div>
+      <div v-if="form.task.bottom.visible">
+        <div class="tasklist_task">
+          <input type="text" placeholder="Enter your new task..." style="width: 50%; font-size: 16px; padding: 4px;" v-model="form.task.bottom.name" @keydown.enter="push" @keydown.esc="hideBottomTaskForm" id="taskinputform__bottom" />
+          <button class="action" style="background-color: lightskyblue; margin-left: 8px;" @click="push">Add</button>
+          <button class="action" style="margin-left: 8px;" @click="hideBottomTaskForm">Cancel</button>
+        </div>
+      </div>
+      <div style="text-align: center; margin-top: 8px;" v-if="form.task.bottom.visible === false">
+        <button @click="showBottomTaskForm" class="wide round borderless" style="padding: 8px 16px;">Create task</button>
+      </div>
     </div>
     
     <!-- Backlog -->
     <div v-if="featureBacklogEnabled">
       <hr style="width: 80%; margin: 64px auto; border: 0.5px dashed lightgray" />
-      <div>
+      <div style="background-color: white; padding: 16px">
         <backlog-container />
       </div>
     </div>
