@@ -230,10 +230,20 @@ export default {
     },
     hideBacklogTemporary: function () {
       this.backlog.visible = false;
+      window.localStorage.setItem('backlog_temporary_visible', 'hide');
     },
     showBacklogTemporary: function () {
       this.backlog.visible = true;
+      window.localStorage.setItem('backlog_temporary_visible', 'show');
     },
   },
+  beforeMount () {
+    let backlogVisible = window.localStorage.getItem('backlog_temporary_visible');
+    if (backlogVisible == null) {
+      this.showBacklogTemporary();
+    } else {
+      this.backlog.visible = backlogVisible == 'show';
+    }
+  }
 }
 </script>
