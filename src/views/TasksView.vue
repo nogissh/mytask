@@ -51,9 +51,20 @@
     
     <!-- Backlog -->
     <div v-if="featureBacklogEnabled">
-      <hr style="width: 80%; margin: 64px auto; border: 0.5px dashed lightgray" />
-      <div style="background-color: white; padding: 16px">
-        <backlog-container />
+      <div v-if="backlog.visible">
+        <hr style="width: 80%; margin: 64px auto 64px auto; border: 0.5px dashed lightgray" />
+
+        <div style="background-color: white; padding: 16px">
+          <p style="text-align: center">
+            <span style="color: gray; font-size: 13px; cursor: pointer" @click="hideBacklogTemporary">[ Hide backlog ]</span>
+          </p>
+          <backlog-container />
+        </div>
+      </div>
+      <div v-else>
+        <p style="text-align: center; margin-top: 32px">
+          <span style="color: gray; font-size: 13px; cursor: pointer" @click="showBacklogTemporary">[ Show backlog ]</span>
+        </p>
       </div>
     </div>
 
@@ -105,6 +116,9 @@ export default {
             name: ''
           }
         }
+      },
+      backlog: {
+        visible: true,
       }
     }
   },
@@ -213,7 +227,13 @@ export default {
     },
     routeToMultipleTagging: function () {
       this.$router.push({ name: 'MultipleTagging' });
-    }
+    },
+    hideBacklogTemporary: function () {
+      this.backlog.visible = false;
+    },
+    showBacklogTemporary: function () {
+      this.backlog.visible = true;
+    },
   },
 }
 </script>
