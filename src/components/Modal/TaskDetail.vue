@@ -131,7 +131,6 @@ export default {
   bottom: 0;
   margin: auto;
   background-color: white;
-  box-shadow: 0 6px 3px 1px rgba(196, 196, 196, 0.8);
   border-radius: 0;
 }
 
