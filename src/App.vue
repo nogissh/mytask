@@ -130,6 +130,10 @@ button.primary {
   background-color: royalblue;
   color: white;
 }
+button.secondary {
+  background-color: lightgray;
+  color: black;
+}
 button.danger {
   background-color: crimson;
   color: white;
