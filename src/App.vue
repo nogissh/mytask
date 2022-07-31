@@ -21,6 +21,10 @@
       <router-view/>
       <floating-side-menu />
     </div>
+
+    <footer style="margin: 64px auto;">
+      <p style="text-align: center; color: gray; font-size: 13px">Produced by nogissh, hosted on <a href="https://github.com/nogissh/cddr" target="_blank">GitHub</a>.</p>
+    </footer>
   </div>
 </template>
 
@@ -171,7 +175,6 @@ label.color-default {
   margin: 0 auto;
   /* padding: 16px; */
   margin-top: 32px;
-  margin-bottom: 256px;
   /* background-color: white; */
 }
 
