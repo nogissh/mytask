@@ -12,6 +12,7 @@ function createNewTask (id, name) {
   return {
     id: id,
     tags: [],
+    activities: [],
     name: name,
     description: null,
     reference: null,
@@ -31,6 +32,14 @@ function createNewTag (id, name) {
     name: name,
     // createDate: getDateAsJST(),
     createDate: null,
+  }
+}
+
+function createNewTaskActivity (id, memo) {
+  return {
+    id: id,
+    memo: memo,
+    createdAt: Date.now(),
   }
 }
 
@@ -78,6 +87,7 @@ function datediff(lower, upper) {
 export {
   createNewTask,
   createNewTag,
+  createNewTaskActivity,
   toISOStringOnAsiaTokyoTimezone,
   intersection,
   datediff,
