@@ -173,9 +173,7 @@ label.color-default {
 #main {
   width: 960px;
   margin: 0 auto;
-  /* padding: 16px; */
   margin-top: 32px;
-  /* background-color: white; */
 }
 
 #nav {
