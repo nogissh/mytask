@@ -39,6 +39,7 @@ button.floating-side-menu__button {
   margin-top: 8px;
   padding: 16px;
   background-color: lightgray;
+  border-radius: 32px;
 }
 
 button.floating-side-menu__download:hover {
