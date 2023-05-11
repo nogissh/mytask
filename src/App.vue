@@ -109,7 +109,6 @@ span.tagfilterused:hover {
 button:hover {
   background-color: lightgray;
 }
-
 button.std {
   padding: 8px 16px;
   border: 0;
