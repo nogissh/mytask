@@ -52,7 +52,7 @@
         </div>
       </div>
 
-      <div id="task-detail-modal__footer">
+      <div id="task-detail-modal__footer" @click.stop>
         <div style="margin-top: 12px; text-align: center">
           <button class="action secondary" @click="closeModal">Cancel</button>
           <button class="action primary" style="margin-left: 8px" @click="submit">Save</button>
