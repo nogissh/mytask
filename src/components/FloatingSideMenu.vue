@@ -38,12 +38,6 @@ button.floating-side-menu__button {
   width: 80px;
   margin-top: 8px;
   padding: 16px;
-  background-color: lightgray;
   border-radius: 32px;
-}
-
-button.floating-side-menu__button:hover {
-  background-color: gray;
-  color: white;
 }
 </style>

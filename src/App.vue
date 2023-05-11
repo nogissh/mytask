@@ -106,6 +106,10 @@ span.tagfilterused:hover {
   cursor: pointer;
 }
 
+button:hover {
+  background-color: lightgray;
+}
+
 button.std {
   padding: 8px 16px;
   border: 0;
