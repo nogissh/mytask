@@ -42,7 +42,7 @@ button.floating-side-menu__button {
   border-radius: 32px;
 }
 
-button.floating-side-menu__download:hover {
+button.floating-side-menu__button:hover {
   background-color: gray;
   color: white;
 }
