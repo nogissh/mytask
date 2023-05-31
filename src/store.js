@@ -88,6 +88,17 @@ const task = {
     overwritetag: function (state, tags) {
       state.list[state.select].tags = tags;
     },
+    updatetags: function (state, tags) {
+      for (let i=0; i<state.list.length; i++) {
+        for (let j=0; j<state.list[i].tags.length; j++) {
+          for (let k=0; k<tags.length; k++) {
+            if (state.list[i].tags[j].id == tags[k].id) {
+              state.list[i].tags[j] = tags[k];
+            }
+          }
+        }
+      }
+    },
     presentationmode: function (state, status) {
       state.presentation.mode = status;
     },
@@ -256,6 +267,10 @@ const task = {
       commit('update', task);
       dispatch('presentationlist');
     },
+    updatetags ({ commit, dispatch }, tags) {
+      commit('updatetags', tags);
+      dispatch('presentationlist');
+    }
   }
 }
 
