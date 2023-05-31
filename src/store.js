@@ -99,6 +99,13 @@ const task = {
         }
       }
     },
+    removetag: function (state, tagId) {
+      for (let i=0; i<state.list.length; i++) {
+        let oldTags = state.list[i].tags;
+        let newTags = oldTags.filter(function (v) { return v.id != tagId });
+        state.list[i].tags = newTags;
+      }
+    },
     presentationmode: function (state, status) {
       state.presentation.mode = status;
     },
@@ -270,7 +277,11 @@ const task = {
     updatetags ({ commit, dispatch }, tags) {
       commit('updatetags', tags);
       dispatch('presentationlist');
-    }
+    },
+    removetag ({ commit, dispatch }, tag_id) {
+      commit('removetag', tag_id);
+      dispatch('presentationlist');
+    },
   }
 }
 

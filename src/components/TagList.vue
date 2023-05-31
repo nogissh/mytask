@@ -40,6 +40,7 @@ export default {
       if (! confirm('Deleted tag are never restore. [y/N]')) {
         return;
       }
+      this.$store.dispatch('task/removetag', id);
       this.$store.dispatch('tag/delete', id);
     }
   },
