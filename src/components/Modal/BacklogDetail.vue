@@ -1,36 +1,38 @@
 <template>
   <div id="backlog-detail-modal__background" @click="backgroundClickAction">
-    <div id="backlog-detail-modal__body">
-      <div style="padding: 4px 32px;" @click.stop>
-        <h2>Backlog</h2>
-        <div style="width: 100%">
-          <table style="width: 80%; min-width: 640px;" id="backlog-detail-table">
-            <tr>
-              <th>Title</th>
-              <td>
-                <input type="text" placeholder="Title" v-model="task.name" @keydown.enter="submit" id="backlog-detail-modal-title-input" />
-              </td>
-            </tr>
-            <tr>
-              <th>Description</th>
-              <td>
-                <textarea style="height: 80px" v-model="task.description"></textarea>
-              </td>
-            </tr>
-            <tr>
-              <th>URL</th>
-              <td>
-                <input type="text" placeholder="URL" v-model="task.reference" />
-              </td>
-            </tr>
-          </table>
-
-          <div style="text-align: center">
-            <button class="action primary" @click="submit">Submit</button>
+    <div id="backlog-detail-modal__container">
+      <div id="backlog-detail-modal__body">
+        <div style="padding: 4px 32px;" @click.stop>
+          <h2>Backlog</h2>
+          <div style="width: 100%">
+            <table style="width: 80%; min-width: 640px;" id="backlog-detail-table">
+              <tr>
+                <th>Title</th>
+                <td>
+                  <input type="text" placeholder="Title" v-model="task.name" @keydown.enter="submit" id="backlog-detail-modal-title-input" />
+                </td>
+              </tr>
+              <tr>
+                <th>Description</th>
+                <td>
+                  <textarea style="height: 80px" v-model="task.description"></textarea>
+                </td>
+              </tr>
+              <tr>
+                <th>URL</th>
+                <td>
+                  <input type="text" placeholder="URL" v-model="task.reference" />
+                </td>
+              </tr>
+            </table>
           </div>
         </div>
-        <div style="text-align: center; margin-top: 16px">
-          <span id="backlog-detail-modal__close-button" style="font-size: 13px" @click="closeModal">Close</span>
+      </div>
+
+      <div id="backlog-detail-modal__footer" @click.stop>
+        <div style="margin-top: 12px; text-align: center">
+          <button class="action secondary" @click="closeModal">Cancel</button>
+          <button class="action primary" style="margin-left: 8px" @click="submit">Save</button>
         </div>
       </div>
     </div>
@@ -79,7 +81,7 @@ export default {
   background-color: rgba(100, 100, 100, 0.5);
 }
 
-#backlog-detail-modal__body {
+#backlog-detail-modal__container {
   z-index: 1001;
   position: absolute;
   width: 860px;
@@ -90,8 +92,19 @@ export default {
   bottom: 0;
   margin: auto;
   background-color: white;
-  box-shadow: 0 6px 3px 1px rgba(196, 196, 196, 0.8);
   border-radius: 0;
+}
+
+#backlog-detail-modal__body {
+  width: 100%;
+  height: 360px;
+  overflow-y: scroll;
+}
+
+#backlog-detail-modal__footer {
+  width: 100%;
+  height: 60px;
+  border-top: 1px lightgray solid;
 }
 
 #backlog-detail-modal__close-button:hover {
