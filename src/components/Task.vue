@@ -7,22 +7,24 @@
       <div class="task-flex-name">
         <span style="height: 100%; vertical-align: middle;" v-bind:style="task.done ? { 'color': '#999', 'text-decoration': 'line-through' } : {}" @click.stop="() => {}">
           <span style="cursor: pointer" @click.stop="showDetail">{{ task.name }}</span>
-          <span class="taskdetail" v-if="task.description != '' && task.description != null && task.description != undefined" style="margin-left: 8px">
-            <span>
-              <a>
-                <img src="https://icongr.am/clarity/details.svg?size=16&color=000000" style="vertical-align: middle" />
-              </a>
-              <span>
-                <p style="white-space: pre-wrap">{{ task.description }}</p>
-              </span>
-            </span>
-          </span>
-          <a :href="task.reference" target="_blank" v-if="task.reference != null && task.reference != undefined && task.reference != ''">
-            <img src="https://icongr.am/clarity/link.svg?size=16&color=000000" style="vertical-align: middle; margin-left: 8px" />
-          </a>
         </span>
       </div>
-      <div class="task-flex-tag">
+      <div class="task-flex-info" style="text-align: center">
+        <span class="taskdetail" v-if="task.description != '' && task.description != null && task.description != undefined" style="margin-left: 8px">
+          <span>
+            <a>
+              <img src="https://icongr.am/clarity/details.svg?size=16&color=000000" style="vertical-align: middle" />
+            </a>
+            <span>
+              <p style="white-space: pre-wrap">{{ task.description }}</p>
+            </span>
+          </span>
+        </span>
+        <a :href="task.reference" target="_blank" v-if="task.reference != null && task.reference != undefined && task.reference != ''">
+          <img src="https://icongr.am/clarity/link.svg?size=16&color=000000" style="vertical-align: middle; margin-left: 8px" />
+        </a>
+      </div>
+      <div class="task-flex-tag" style="text-align: center">
         <span style="height: 100%; vertical-align: middle;" @click.stop="() => {}">
           <span v-for="(tasktag, index) in task.tags" :key="index" class="tag" :title="tasktag.name" style="margin-right: 8px;">{{ tasktag.name.slice(0, 6) }}</span>
         </span>
@@ -126,7 +128,7 @@ export default {
 .task-checkbox {
   width: 20px;
   height: 20px;
-  margin-top: 5px;
+  margin: 5px 0;
 }
 
 .task-flex-state {
@@ -134,6 +136,9 @@ export default {
 }
 .task-flex-name {
   flex-basis: 50%;
+}
+.task-flex-info {
+  flex-basis: 10%;
 }
 .task-flex-tag {
   flex-basis: 20%;
