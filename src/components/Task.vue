@@ -44,6 +44,7 @@
             <img src="https://icongr.am/clarity/ellipsis-horizontal.svg?size=13&color=currentColor" alt="..." />
           </button>
           <ul v-if="visibility.taskmenu">
+            <li @click.stop="inactivate(task)">Inactivate</li>
             <li @click.stop="deltask(task.id)">Delete</li>
           </ul>
         </div>
@@ -53,7 +54,7 @@
 </template>
 
 <script>
-import { datediff } from '../utils.js';
+import { createNewTask, datediff } from '../utils.js';
 
 export default {
   name: 'Task',
@@ -84,6 +85,13 @@ export default {
       } else {
         this.$store.dispatch('task/done', id);
       }
+    },
+    inactivate: function (task) {
+      var backlog = createNewTask(Date.now(), task.name);
+      backlog.description = task.description;
+      backlog.reference = task.reference;
+      this.$store.dispatch('backlog/push', backlog);
+      this.$store.dispatch('task/delete', task.id);
     },
     deltask: function (id) {
       if (! confirm('Deleted task are never restore. [y/N]')) {
