@@ -7,19 +7,10 @@
             <td style="width: 10%;">
               <button @click="showTopTaskForm" class="borderless" style="padding: 8px 16px;" v-if="form.task.top.visible === false">Create</button>
             </td>
-            <td style="width: 65%; overflow: hidden;">
+            <td style="width: 90%; overflow: hidden;">
               <span v-for="(tag, index) in tags" :key="index" class="tag" :title="tag.name" v-bind:class="tagfilterselected.indexOf(tag.id) == -1 ? 'tagfilter' : 'tagfilterused'" style="margin-right: 4px;" @click="mutatecondtag(tag.id)">{{ tag.name.slice(0, 3) }}</span>
               <tag-filter-create-button style="margin-left: 4px" v-if="tagfilterselected.length == 0">+</tag-filter-create-button>
               <span @click="mutatecondtag(null)" style="margin-left: 4px; font-size: 12px; cursor: pointer;" v-if="tagfilterselected.length > 0">Clear</span>
-            </td>
-            <td style="width: 25%; text-align: right">
-              <span v-if="presentationselects.length == 0">
-                <button class="borderless" style="padding: 8px 16px;" @click="archiveDoneTask">Archive done</button>
-              </span>
-              <span v-else>
-                <button class="borderless primary" style="padding: 8px 16px; margin-right: 8px;" @click="routeToMultipleTagging">Tagging</button>
-                <button class="borderless danger" style="padding: 8px 16px;" @click="deleteMultipleTask">Delete</button>
-              </span>
             </td>
           </tr>
         </table>
@@ -204,12 +195,6 @@ export default {
     },
     hideBottomTaskForm: function () {
       this.form.task.bottom.visible = false;
-    },
-    archiveDoneTask: function () {
-      if (! confirm('Archived task are never restore. [y/N]')) {
-        return;
-      }
-      this.$store.dispatch('task/archivedonetask');
     },
     deleteMultipleTask: function () {
       if (! confirm('Delete multiple task is never restore. [y/N]')) {
