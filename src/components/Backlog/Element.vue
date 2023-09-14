@@ -1,8 +1,10 @@
 <template>
   <div class="backlog__flexparent">
-    <div class="backlog__flex-name" style="height: 100%; vertical-align: middle;">
-      <span style="height: 100%; vertical-align: middle; cursor: pointer"  @click.stop="showDetail">{{ task.name }}</span>
-      <span class="backlogdetail" v-if="task.description != '' && task.description != null && task.description != undefined" style="margin-left: 8px">
+    <div class="backlog__flex-name">
+      <span style="height: 100%; vertical-align: middle; margin-left: 20px; cursor: pointer"  @click.stop="showDetail">{{ task.name }}</span>
+    </div>
+    <div class="backlog__flex-info" style="text-align: center">
+      <span class="backlogdetail" v-if="task.description != '' && task.description != null && task.description != undefined" style="margin: 0 4px">
         <span>
           <a>
             <img src="https://icongr.am/clarity/details.svg?size=16&color=000000" style="vertical-align: middle" />
@@ -79,10 +81,13 @@ export default {
   justify-content: space-between;
 }
 .backlog__flex-name {
-  flex-basis: 80%;
+  flex-basis: 75%;
+}
+.backlog__flex-info {
+  flex-basis: 10%;
 }
 .backlog__flex-operate {
-  flex-basis: 20%;
+  flex-basis: 15%;
 }
 
 .backlogdetail span span {
