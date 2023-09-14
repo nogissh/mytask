@@ -38,7 +38,9 @@
       </div>
       <div class="task-flex-operate" style="text-align: right">
         <div class="taskmenu">
-          <button @click.stop="mutateTaskmenuVisibility" class="std antisquare">...</button>
+          <button @click.stop="mutateTaskmenuVisibility" class="std antisquare">
+            <img src="https://icongr.am/clarity/ellipsis-horizontal.svg?size=13&color=currentColor" alt="..." />
+          </button>
           <ul v-if="visibility.taskmenu">
             <li @click.stop="deltask(task.id)">Delete</li>
           </ul>
