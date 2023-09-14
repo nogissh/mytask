@@ -14,8 +14,6 @@
             </td>
             <td style="width: 25%; text-align: right">
               <span v-if="presentationselects.length == 0">
-                <button class="borderless" style="padding: 8px 16px; margin-right: 8px;" @click="hideDoneTask" v-if="donetaskvisible">Hide done</button>
-                <button class="borderless" style="padding: 8px 16px; margin-right: 8px;" @click="showDoneTask" v-else>Show done</button>
                 <button class="borderless" style="padding: 8px 16px;" @click="archiveDoneTask">Archive done</button>
               </span>
               <span v-else>
@@ -206,12 +204,6 @@ export default {
     },
     hideBottomTaskForm: function () {
       this.form.task.bottom.visible = false;
-    },
-    hideDoneTask: function () {
-      this.$store.dispatch('task/hidedonetask');
-    },
-    showDoneTask: function () {
-      this.$store.dispatch('task/showdonetask');
     },
     archiveDoneTask: function () {
       if (! confirm('Archived task are never restore. [y/N]')) {

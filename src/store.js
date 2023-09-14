@@ -17,7 +17,6 @@ const task = {
       selects: [],
       conds: {
         tagids: [],
-        done: true,
       }
     },
   },
@@ -59,7 +58,7 @@ const task = {
     },
     clearconds: function (state) {
       state.presentation.mode = false;
-      state.presentation.conds = { tagids: [], done: true };
+      state.presentation.conds = { tagids: [] };
     },
     overwritetask: function (state, task) {
       state.list[state.select] = task;
@@ -119,9 +118,6 @@ const task = {
           return condset.size == interset.size;
         });
       }
-      if (state.presentation.conds.done == false) {
-        _list = _list.filter(task => task.done == false);
-      }
       state.presentation.list = _list;
     },
     presentationselects: function (state, taskid) {
@@ -147,9 +143,6 @@ const task = {
           state.presentation.conds.tagids.splice(index, 1);
         }
       }
-    },
-    presentationcondsdone: function (state, status) {
-      state.presentation.conds.done = status;
     },
     update: function (state, task) {
       let list = JSON.parse(JSON.stringify(state.list));
@@ -214,12 +207,6 @@ const task = {
       commit('presentationcondstagids', tagid);
       if (state.presentation.conds.tagids.length > 0) {
         commit('presentationmode', true);
-      } else {
-        if (state.presentation.conds.done == false) {
-          commit('presentationmode', true);
-        } else {
-          commit('presentationmode', false);
-        }
       }
       dispatch('presentationlist');
     },
@@ -240,20 +227,6 @@ const task = {
     draggablesort ({ commit, dispatch }, list) {
       commit('overwrite', list);
       dispatch('persistlocalstrage');
-    },
-    hidedonetask ({ commit, dispatch }) {
-      commit('presentationmode', true);
-      commit('presentationcondsdone', false);
-      dispatch('presentationlist');
-    },
-    showdonetask ({ state, commit, dispatch }) {
-      if (state.presentation.conds.tagids.length > 0) {
-        commit('presentationmode', true);
-      } else {
-        commit('presentationmode', false);
-      }
-      commit('presentationcondsdone', true);
-      dispatch('presentationlist');
     },
     archivedonetask ({ getters, commit, dispatch }) {
       var newarchivetasks = getters.list.filter(task => task.done == false);
