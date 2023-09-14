@@ -198,7 +198,7 @@ label.color-default {
 }
 
 .tasklist_task {
-  margin-top: 8px;
+  margin: 8px 0;
   padding: 8px;
   border: 1px solid lightgray;
   border-radius: 4px;
