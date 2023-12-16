@@ -1,5 +1,3 @@
-# mytask
+# Prisall
 
-要望はIssueで受け付けております。
-
-All your request is accepted in issue.
+Prisall is web application for task management based on philosophy that "Priority is all about task management".
