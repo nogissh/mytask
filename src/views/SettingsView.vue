@@ -143,7 +143,7 @@
         <tr>
           <th>Bug report</th>
           <td>
-            Twitter or <a href="https://github.com/nogissh/mytask/issues" target="_blank">GitHub Issues</a>
+            Twitter or <a href="https://github.com/nogissh/prisall/issues" target="_blank">GitHub Issues</a>
           </td>
         </tr>
       </table>
@@ -204,7 +204,7 @@ export default {
       let blob = new Blob([JSON.stringify(data)], { type: 'application/json' })
       let link = document.createElement('a')
       link.href = window.URL.createObjectURL(blob)
-      link.download = 'mytask_backup_' + String(Date.now()) + '.json'
+      link.download = 'prisall_backup_' + String(Date.now()) + '.json'
       link.click()
     },
     importdata: function (event) {
