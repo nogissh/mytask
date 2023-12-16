@@ -13,7 +13,7 @@
         <span class="taskdetail" v-if="task.description != '' && task.description != null && task.description != undefined" style="margin-left: 8px">
           <span>
             <a>
-              <img src="https://icongr.am/clarity/details.svg?size=16&color=000000" style="vertical-align: middle" />
+              <img src="https://icongr.am/clarity/details.svg?size=16&color=000000" alt="●" style="vertical-align: middle" />
             </a>
             <span style="text-align: left">
               <p style="white-space: pre-wrap">{{ task.description }}</p>
@@ -21,7 +21,7 @@
           </span>
         </span>
         <a :href="task.reference" target="_blank" v-if="task.reference != null && task.reference != undefined && task.reference != ''">
-          <img src="https://icongr.am/clarity/link.svg?size=16&color=000000" style="vertical-align: middle; margin-left: 8px" />
+          <img src="https://icongr.am/clarity/link.svg?size=16&color=000000" alt="▼" style="vertical-align: middle; margin-left: 8px" />
         </a>
       </div>
       <div class="task-flex-tag" style="text-align: center">
