@@ -207,6 +207,8 @@ const task = {
       commit('presentationcondstagids', tagid);
       if (state.presentation.conds.tagids.length > 0) {
         commit('presentationmode', true);
+      } else {
+        commit('presentationmode', false);
       }
       dispatch('presentationlist');
     },
