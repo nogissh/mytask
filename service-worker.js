@@ -14,10 +14,10 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/4.3.1/workbox-sw.js");
 
 importScripts(
-  "/precache-manifest.7c9b19b0420987b0d211ff4b7ffcbdef.js"
+  "/precache-manifest.ea531e18cd4e6b60d36b5121976fd2ab.js"
 );
 
-workbox.core.setCacheNameDetails({prefix: "mytask"});
+workbox.core.setCacheNameDetails({prefix: "Prisall"});
 
 self.addEventListener('message', (event) => {
   if (event.data && event.data.type === 'SKIP_WAITING') {
