@@ -6,7 +6,7 @@
           <tr>
             <td>
               <router-link :to="{ name: 'Home' }" style="text-decoration: none; color: black">
-                <h1 style="font-size: 16px; margin: 0">mytask</h1>
+                <h1 style="font-size: 16px; margin: 0">Prisall</h1>
               </router-link>
             </td>
             <td style="text-align: right">
