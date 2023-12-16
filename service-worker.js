@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/4.3.1/workbox-sw.js");
 
 importScripts(
-  "/precache-manifest.ea531e18cd4e6b60d36b5121976fd2ab.js"
+  "/precache-manifest.9e37821d9b2cf981b4e46a1b28a958e1.js"
 );
 
 workbox.core.setCacheNameDetails({prefix: "Prisall"});
