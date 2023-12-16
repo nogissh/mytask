@@ -15,7 +15,7 @@
             <a>
               <img src="https://icongr.am/clarity/details.svg?size=16&color=000000" style="vertical-align: middle" />
             </a>
-            <span>
+            <span style="text-align: left">
               <p style="white-space: pre-wrap">{{ task.description }}</p>
             </span>
           </span>
